@@ -11,10 +11,10 @@ int main(){
 
     Object* myObject = myManager.getObjectByName("myName");
 
-    std::cout << myObject->getName();
+    std::cout << myObject->getName() << std::endl;
 
     myManager.removeObjectByName("myName");
-    
+
 
     return 0;
 }

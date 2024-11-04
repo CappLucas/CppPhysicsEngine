@@ -93,6 +93,3 @@ void ObjectManager::removeObjectByName(std::string objName){
         }
     }
 }
-
-
-
