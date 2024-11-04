@@ -1,0 +1,31 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++.exe build active file",
+            "command": "C:/msys64/ucrt64/bin/g++.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${workspaceFolder}/Main.cpp",
+                "${workspaceFolder}/Source/ObjectManager.cpp",
+                "${workspaceFolder}/Source/Object.cpp",
+                "-I", "${workspaceFolder}/Header", // Path to header files
+                "-o",
+                "${workspaceFolder}/main.exe" // Output executable in project root
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}" // Set working directory to the project root
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Compiles Main.cpp, ObjectManager.cpp, and Object.cpp into main.exe."
+        }
+    ]
+}
