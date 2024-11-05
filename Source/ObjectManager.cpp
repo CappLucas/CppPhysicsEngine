@@ -1,29 +1,5 @@
 #include "ObjectManager.h"
 
-/*OBJECTMANGER has 6 methods:
-
-    Constructor:
-        does nothing for now
-    Destructor:
-        deletes dynmacally allocated objects
-
-    getObjectIteratorByName(name):
-        given name, returns an iterator to the object from the allObjects vector.  
-        Has no processing  of the iterator, if iterator = allObjects.end() it will return the iterator anyway.
-
-    getObjectByName(name):
-        Given name, returns pointer to object in allObjects. if the name given is not found, it returns nullptr
-    
-    addObject(objectInitializers):
-        Given the objects initializers, it makes a new object in allObjects
-
-    removeObjectByName(name):
-        Given name, it deletes the object with that name. 
-        Does not delete anything if allObjects is empty or name is not found in allObjects
-
-*/
-
-
 ObjectManager::ObjectManager()
 {
 
