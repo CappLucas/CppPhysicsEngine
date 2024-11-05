@@ -7,13 +7,11 @@
 
 int main(){
     ObjectManager myManager;
-    myManager.addObject("myName");
+    myManager.addObject("myName","Rectangle",);
 
     Object* myObject = myManager.getObjectByName("myName");
 
-    std::cout << myObject->getName() << std::endl;
-
-    myManager.removeObjectByName("myName");
+    std::cout << myObject->
 
 
     return 0;

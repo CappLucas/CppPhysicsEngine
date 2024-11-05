@@ -22,9 +22,13 @@ public:
     void setCenter(Cooridinate newCenter){center = newCenter;}
 
     //-----------methods---------------
-    void moveTo(Cooridinate newCenter);
-    void move(Cooridinate displacement);
-
+    void moveTo(Cooridinate newCenter){
+        center = newCenter;
+    };
+    void move(Cooridinate displacement){
+        center.first += displacement.first;
+        center.second += displacement.second;
+    };
 private:
     float radius;
     Cooridinate center;
