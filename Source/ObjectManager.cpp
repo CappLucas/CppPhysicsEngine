@@ -1,9 +1,7 @@
 #include "ObjectManager.h"
 
-ObjectManager::ObjectManager()
-{
+float gravity = 0;
 
-}
 //deletes dynamically stored objects
 ObjectManager::~ObjectManager()
 {
@@ -36,15 +34,35 @@ Object *ObjectManager::getObjectByName(std::string objName){
     }
 }
 
-void ObjectManager::addObject(std::string objName){
+//rectangle object adder
+void ObjectManager::addObject(std::string objName, std::string objType, Plane newPlane, Velocity newVelocity = {0,0}, Accelleration newAccelleration = {0,0}, float newMass = 1){
     if(allObjects.empty()){
-        allObjects.push_back(new Object(objName));
+        
+        allObjects.push_back(new Object(objName, objType, newPlane, newVelocity, newAccelleration, newMass));
     }
     else{
         std::vector<Object*>::iterator objectIterator = getObjectIteratorByName(objName);
 
         if(objectIterator != allObjects.end()){
-            allObjects.push_back(new Object(objName));
+            allObjects.push_back(new Object(objName, objType, newPlane,newVelocity, newAccelleration, newMass));
+        }
+        else{
+            std::cerr << "Error: Creation failed. Object named " << objName << " already exists." << std::endl;
+        }
+    }
+}
+
+//rectangle object adder
+void ObjectManager::addObject(std::string objName, std::string objType, Cooridinate center, float radius, Velocity newVelocity = {0,0}, Accelleration newAccelleration = {0,0}, float newMass = 1){
+    if(allObjects.empty()){
+        
+        allObjects.push_back(new Object(objName, objType, center, radius, newVelocity, newAccelleration, newMass));
+    }
+    else{
+        std::vector<Object*>::iterator objectIterator = getObjectIteratorByName(objName);
+
+        if(objectIterator != allObjects.end()){
+            allObjects.push_back(new Object(objName, objType, center, radius, newVelocity, newAccelleration, newMass));
         }
         else{
             std::cerr << "Error: Creation failed. Object named " << objName << " already exists." << std::endl;
@@ -67,5 +85,11 @@ void ObjectManager::removeObjectByName(std::string objName){
         else{
             std::cerr << "Error: Deletion failed. Object named " << objName << " does not exist." << std::endl;
         }
+    }
+}
+
+void ObjectManager::updateObjects(float deltaTime){
+    for(Object * objectIterator: allObjects){
+        objectIterator->updateObject(deltaTime);
     }
 }

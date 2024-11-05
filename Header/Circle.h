@@ -26,8 +26,8 @@ public:
         center = newCenter;
     };
     void move(Cooridinate displacement){
-        center.first += displacement.first;
-        center.second += displacement.second;
+        center.x += displacement.x;
+        center.y += displacement.y;
     };
 private:
     float radius;

@@ -34,9 +34,9 @@ Each object has a class representing a shape it could be and things like velocit
  */
 class ObjectManager{
 public:
-    ObjectManager();
     ~ObjectManager();
-
+    
+    static float gravity;
     /// @brief returns the allObjects vector
     /// @return returns all objects. type: std::vector<Object*>
     std::vector<Object*> getAllObjects(){return allObjects; };
@@ -68,6 +68,8 @@ public:
      */
     void removeObjectByName(std::string objName);
 
+    // updates the position and velocity of the object based on delta time.
+    void updateObjects(float deltaTime);
 private:
     /// @brief Stores all game objects.
     std::vector<Object*> allObjects;

@@ -3,12 +3,22 @@
 
 #include <utility>
 
-using Cooridinate = std::pair<float,float>;
+struct coordStruct{
+    float x;
+    float y;
+};
 
-using Velocity = std::pair<float,float>;
+struct cornerStruct{
+    coordStruct bottomLeft;
+    coordStruct topRight;
+};
 
-using Accelleration = std::pair<float,float>;
+using Cooridinate = coordStruct;
 
-using Plane = std::pair<std::pair<float,float>,std::pair<float,float>>;
+using Velocity = coordStruct;
+
+using Accelleration = coordStruct;
+
+using Plane = cornerStruct;
 
 #endif

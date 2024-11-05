@@ -1,11 +1,21 @@
 #include "Object.h"
 
-Object::Object(std::string objName)
-{
-    name = objName;
-}
+void Object::updateObject(float deltaTime){
+    //update position using velocity, accelleration, and more.
+    float gravityHolder = (isAffectedByGravity ? gravity : 1);
 
-Object::~Object()
-{
-    std::cout << "Destroying..." << std::endl;
+    //updating y acceleration
+    objectAccelleration.y = objectAccelleration.y + gravity;
+    if(type == "Rectangle"){
+        Cooridinate displacement;
+        
+        //finding displacment with d = v*t + a*t
+        displacement.x = displacement.x + (objectVelocity.x * deltaTime) + (objectAccelleration.x * deltaTime);
+        displacement.y = displacement.y + (objectVelocity.y * deltaTime) + (objectAccelleration.y * deltaTime);
+
+        objectRectangle->move({displacement.x,displacement.y});
+    }
+    else if(type == "Circle"){
+
+    }
 }

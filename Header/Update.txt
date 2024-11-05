@@ -1,0 +1,35 @@
+sudo code for the equations class, collision class, and update class.
+
+//Object manager has a collision manager, an update class, and can access the equations class.
+
+Object{
+    public:
+
+    private:
+        collisionManager objectCollisionManager();
+        Update objectUpdate();
+}
+//example collisionManager and object update class
+
+objectUpdate{
+    public:
+        objectUpdate(std::vector<Object*> &newAllObjects) : allObjects(newAllObjects){}
+
+        void update();
+
+    private:
+        std::vector<Object*> &allObjects;
+}
+void objectUpdate::update(){
+    for(Object* objectIterator : allObjects){
+        
+    }
+}
+
+collisionManager{
+    public:
+        collisionManager(std::vector<Object*> &newAllObjects) : allObjects(newAllObjects){}
+    private:
+        //reference to allObjects 
+        std::vector<Object*> &allObjects;
+}
