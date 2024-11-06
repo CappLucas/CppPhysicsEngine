@@ -1,8 +1,10 @@
 #include "Object.h"
+float Object::defaultMass = 1.0;
+float Object::defaultGravity = 0;
 
 void Object::updateObject(float deltaTime){
     //update position using velocity, accelleration, and more.
-    float gravityHolder = (isAffectedByGravity ? gravity : 1);
+    float gravityHolder = (isAffectedByGravity ? Object::defaultGravity : 1);
 
     //updating y acceleration
     objectAccelleration.y = objectAccelleration.y + gravity;

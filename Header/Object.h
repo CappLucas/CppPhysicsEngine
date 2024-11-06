@@ -14,13 +14,13 @@
 class Object{
 public:
     static float defaultMass;
-    
+    static float defaultGravity;
+
     //constructor for rectangle
     Object(std::string objName, std::string objType, Plane newPlane, Velocity newVelocity = {0,0}, Accelleration newAccelleration = {0,0}, float newMass = 1) : name(objName), type(objType), objectRectangle(new Rectangle(newPlane)),objectVelocity(newVelocity), objectAccelleration(newAccelleration), objectMass(newMass){};
 
     //constructor for circle
     Object(std::string objName, std::string objType, Cooridinate center, float radius, Velocity newVelocity = {0,0}, Accelleration newAccelleration = {0,0}, float newMass = 1) : name(objName), type(objType), objectCircle(new Circle(center,radius)), objectVelocity(newVelocity), objectAccelleration(newAccelleration), objectMass(newMass){};
-    ~Object();
 
     //---------------- getters ---------------------
     std::string getName(){return name;}
@@ -58,7 +58,7 @@ private:
     Rectangle *objectRectangle = nullptr;
 
     //reference to the static gravity variable so that when you change the static you change all the others too.
-    float &gravity = ObjectManager::gravity;
+    float &gravity = Object::defaultGravity;
 };
 
 #endif

@@ -57,7 +57,6 @@ public:
      * @brief Creates object of given object constructor parameters.
      * @param objName name of object to create.
      */
-    /////////////// -------------------------------------UPDATE THIS METHOD DEFINITION PLEASEEEEEE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     void addObject(std::string objName, std::string objType, Plane newPlane, Velocity newVelocity = {0,0}, Accelleration newAccelleration = {0,0}, float newMass = 1);
     void addObject(std::string objName, std::string objType, Cooridinate center, float radius, Velocity newVelocity = {0,0}, Accelleration newAccelleration = {0,0}, float newMass = 1);
     /**
@@ -65,6 +64,7 @@ public:
      */
     void removeObjectByName(std::string objName);
 
+    void printObjectInfo();
     // updates the position and velocity of the object based on delta time.
     void updateObjects(float deltaTime);
 private:

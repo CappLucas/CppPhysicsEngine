@@ -35,7 +35,7 @@ Object *ObjectManager::getObjectByName(std::string objName){
 }
 
 //rectangle object adder
-void ObjectManager::addObject(std::string objName, std::string objType, Plane newPlane, Velocity newVelocity = {0,0}, Accelleration newAccelleration = {0,0}, float newMass = 1){
+void ObjectManager::addObject(std::string objName, std::string objType, Plane newPlane, Velocity newVelocity, Accelleration newAccelleration, float newMass){
     if(allObjects.empty()){
         
         allObjects.push_back(new Object(objName, objType, newPlane, newVelocity, newAccelleration, newMass));
@@ -53,7 +53,7 @@ void ObjectManager::addObject(std::string objName, std::string objType, Plane ne
 }
 
 //rectangle object adder
-void ObjectManager::addObject(std::string objName, std::string objType, Cooridinate center, float radius, Velocity newVelocity = {0,0}, Accelleration newAccelleration = {0,0}, float newMass = 1){
+void ObjectManager::addObject(std::string objName, std::string objType, Cooridinate center, float radius, Velocity newVelocity, Accelleration newAccelleration, float newMass){
     if(allObjects.empty()){
         
         allObjects.push_back(new Object(objName, objType, center, radius, newVelocity, newAccelleration, newMass));
@@ -87,7 +87,12 @@ void ObjectManager::removeObjectByName(std::string objName){
         }
     }
 }
-
+void ObjectManager::printObjectInfo(){
+    for(Object * objectIterator : allObjects){
+        std::cout << "Object Name: " << objectIterator->getName() << std::endl;
+        std::cout <<  "\tObject Type: " << objectIterator->getType() << "  Velocity: " << objectIterator->getVelocity().x << ", " << objectIterator->getVelocity().y << "   Accelleration: " << objectIterator->getAccelleration().x << ", " << objectIterator->getAccelleration().x << std::endl;
+    }
+}
 void ObjectManager::updateObjects(float deltaTime){
     for(Object * objectIterator: allObjects){
         objectIterator->updateObject(deltaTime);
