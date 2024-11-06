@@ -21,9 +21,6 @@ Each object has certain properties that are used depending on shape type.
 Each object has a class representing a shape it could be and things like velocity, mass, and accelleration
 
 */
-
-
-
 /**
  * @class ObjectManager
  * @brief Manages game objects, including creation, storage, and deletion.
