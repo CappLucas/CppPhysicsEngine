@@ -7,17 +7,26 @@
 
 class Rectangle{
 public:
+    //constructor by two points
     Rectangle(Plane newPlane) : plane(newPlane){};
+    //constructor by one point and length and width values.
+    Rectangle(Cooridinate newBottomLeftCorner, float length, float height){
+        plane.bottomLeft = newBottomLeftCorner;
+        plane.topRight = {newBottomLeftCorner.x + length, newBottomLeftCorner.y + height};
+    }
     ~Rectangle();
 
     //------------------------- getters ---------------------------
+    Cooridinate getBottomLeftCorner(){return plane.bottomLeft;}
+    Cooridinate getTopRightCorner(){return plane.topRight;}
+
     float getLeftX(){return plane.bottomLeft.x;}
     float getRightX(){return plane.topRight.x;}
     float getBottomY(){return plane.bottomLeft.y;}
     float getTopY(){return plane.topRight.y;}
 
-    float getLength(){return plane.bottomLeft.x - plane.topRight.x;}
-    float getHeight(){return plane.bottomLeft.y - plane.topRight.y;}
+    float getLength(){return plane.topRight.x - plane.bottomLeft.x;}
+    float getHeight(){return plane.topRight.y - plane.bottomLeft.y;}
 
     float getXCenter(){return (plane.bottomLeft.x + plane.topRight.x)/2;}
     float getYCenter(){return (plane.bottomLeft.y + plane.topRight.y)/2;}
@@ -25,10 +34,13 @@ public:
     Cooridinate getCenter(){return {getXCenter(),getYCenter()};}
 
     //------------------------- setters ----------------------------
-    void changeLeftX(float leftX){if(leftX < getRightX()){plane.bottomLeft.x = leftX;}};
-    void changeRightX(float rightX){if(rightX > getLeftX()){plane.topRight.x = rightX;}};
-    void changeBottomY(float bottomY){if(bottomY < getTopY()){plane.bottomLeft.x = bottomY;}};
-    void changeTopY(float topY){if(topY > getBottomY()){plane.topRight.x = topY;}};
+    void setBottomLeft(Cooridinate newCorner){plane.bottomLeft = newCorner;}
+    void setTopRight(Cooridinate newCorner){plane.topRight = newCorner;}
+
+    void setLeftX(float leftX){if(leftX < getRightX()){plane.bottomLeft.x = leftX;}};
+    void setRightX(float rightX){if(rightX > getLeftX()){plane.topRight.x = rightX;}};
+    void setBottomY(float bottomY){if(bottomY < getTopY()){plane.bottomLeft.x = bottomY;}};
+    void setTopY(float topY){if(topY > getBottomY()){plane.topRight.x = topY;}};
     
     //------------------------- methods ----------------------------
     void moveTo(Cooridinate newPosition){

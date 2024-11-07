@@ -13,6 +13,7 @@
                 "${workspaceFolder}/Source/Object.cpp",
                 "${workspaceFolder}/Source/Circle.cpp",
                 "${workspaceFolder}/Source/Rectangle.cpp",
+                "${workspaceFolder}/Source/PhysicsEquations.cpp",
 
                 "-I", "${workspaceFolder}/Header", // Path to header files
                 "-o",

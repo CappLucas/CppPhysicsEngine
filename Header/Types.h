@@ -17,7 +17,7 @@ using Cooridinate = coordStruct;
 
 using Velocity = coordStruct;
 
-using Accelleration = coordStruct;
+using Acceleration = coordStruct;
 
 using Plane = cornerStruct;
 

@@ -12,7 +12,6 @@ ObjectManager::~ObjectManager()
     std::cout << "Objects deleted." << std::endl;
 }
 
-
 std::vector<Object*>::iterator ObjectManager::getObjectIteratorByName(std::string objName){
     auto conditions = [&objName](Object* &objIt){
         return objIt->getName() == objName;
@@ -35,16 +34,16 @@ Object *ObjectManager::getObjectByName(std::string objName){
 }
 
 //rectangle object adder
-void ObjectManager::addObject(std::string objName, std::string objType, Plane newPlane, Velocity newVelocity, Accelleration newAccelleration, float newMass){
+void ObjectManager::addObject(std::string objName, std::string objType, Plane newPlane, Velocity newVelocity, Acceleration newAcceleration, float newMass){
     if(allObjects.empty()){
         
-        allObjects.push_back(new Object(objName, objType, newPlane, newVelocity, newAccelleration, newMass));
+        allObjects.push_back(new Object(objName, objType, newPlane, newVelocity, newAcceleration, newMass));
     }
     else{
         std::vector<Object*>::iterator objectIterator = getObjectIteratorByName(objName);
 
         if(objectIterator != allObjects.end()){
-            allObjects.push_back(new Object(objName, objType, newPlane,newVelocity, newAccelleration, newMass));
+            allObjects.push_back(new Object(objName, objType, newPlane,newVelocity, newAcceleration, newMass));
         }
         else{
             std::cerr << "Error: Creation failed. Object named " << objName << " already exists." << std::endl;
@@ -53,16 +52,16 @@ void ObjectManager::addObject(std::string objName, std::string objType, Plane ne
 }
 
 //rectangle object adder
-void ObjectManager::addObject(std::string objName, std::string objType, Cooridinate center, float radius, Velocity newVelocity, Accelleration newAccelleration, float newMass){
+void ObjectManager::addObject(std::string objName, std::string objType, Cooridinate center, float radius, Velocity newVelocity, Acceleration newAcceleration, float newMass){
     if(allObjects.empty()){
         
-        allObjects.push_back(new Object(objName, objType, center, radius, newVelocity, newAccelleration, newMass));
+        allObjects.push_back(new Object(objName, objType, center, radius, newVelocity, newAcceleration, newMass));
     }
     else{
         std::vector<Object*>::iterator objectIterator = getObjectIteratorByName(objName);
 
-        if(objectIterator != allObjects.end()){
-            allObjects.push_back(new Object(objName, objType, center, radius, newVelocity, newAccelleration, newMass));
+        if(objectIterator == allObjects.end()){
+            allObjects.push_back(new Object(objName, objType, center, radius, newVelocity, newAcceleration, newMass));
         }
         else{
             std::cerr << "Error: Creation failed. Object named " << objName << " already exists." << std::endl;
@@ -87,12 +86,29 @@ void ObjectManager::removeObjectByName(std::string objName){
         }
     }
 }
+
 void ObjectManager::printObjectInfo(){
     for(Object * objectIterator : allObjects){
         std::cout << "Object Name: " << objectIterator->getName() << std::endl;
-        std::cout <<  "\tObject Type: " << objectIterator->getType() << "  Velocity: " << objectIterator->getVelocity().x << ", " << objectIterator->getVelocity().y << "   Accelleration: " << objectIterator->getAccelleration().x << ", " << objectIterator->getAccelleration().x << std::endl;
+        std::cout <<  "\tObject Type: " << objectIterator->getType() << "  Velocity: {" << objectIterator->getVelocity().x << ", " << objectIterator->getVelocity().y << "}  Accelleration: {" << objectIterator->getAcceleration().x << ", " << objectIterator->getAcceleration().x << "}  Mass: " << objectIterator->getMass();
+
+        if(objectIterator->getType() == "Rectangle"){
+            //couting corners
+            std::cout << "\n\tBottom Left Corner: {" << objectIterator->objectRectangle->getLeftX() << ", " << objectIterator->objectRectangle->getBottomY();
+            std::cout << "}  Top Right Corner: {" << objectIterator->objectRectangle->getRightX() << ", " << objectIterator->objectRectangle->getTopY() << "}";
+            
+            //couting lenght and height
+            std::cout << "  Length: " << objectIterator->objectRectangle->getLength() << "  Height: " << objectIterator->objectRectangle->getHeight() << std::endl;
+        }
+        else if(objectIterator->getType() == "Circle"){
+            std::cout << "\n\tCenter: {" << objectIterator->objectCircle->getCenter().x << ", " << objectIterator->objectCircle->getCenter().y << "}";
+            std::cout << " Radius: " << objectIterator->objectCircle->getRadius() << std::endl;
+        }
+        //adds extra line of space between each object
+        std::cout << std::endl;
     }
 }
+
 void ObjectManager::updateObjects(float deltaTime){
     for(Object * objectIterator: allObjects){
         objectIterator->updateObject(deltaTime);

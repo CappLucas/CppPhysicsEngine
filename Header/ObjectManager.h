@@ -57,8 +57,8 @@ public:
      * @brief Creates object of given object constructor parameters.
      * @param objName name of object to create.
      */
-    void addObject(std::string objName, std::string objType, Plane newPlane, Velocity newVelocity = {0,0}, Accelleration newAccelleration = {0,0}, float newMass = 1);
-    void addObject(std::string objName, std::string objType, Cooridinate center, float radius, Velocity newVelocity = {0,0}, Accelleration newAccelleration = {0,0}, float newMass = 1);
+    void addObject(std::string objName, std::string objType, Plane newPlane, Velocity newVelocity = {0,0}, Acceleration newAcceleration = {0,0}, float newMass = 1);
+    void addObject(std::string objName, std::string objType, Cooridinate center, float radius, Velocity newVelocity = {0,0}, Acceleration newAcceleration = {0,0}, float newMass = 1);
     /**
      * @details Given name, it deletes the object with that name. Does not delete anything if allObjects is empty or name is not found in allObjects.
      */

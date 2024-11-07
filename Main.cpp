@@ -7,21 +7,19 @@
 
 int main(){
     ObjectManager myManager;
+
     Object::defaultMass = 20;
+    Object::defaultGravity = 12;
+
     myManager.addObject("MyRectangle", "Rectangle", {{100,150},{200,250}}, {20,20},{20,10});
 
-    Object* myObject = myManager.getObjectByName("MyRectangle");
-
-    std::cout << "Velocity {x,y}: {" << myObject->getVelocity().x << ", " <<myObject->getVelocity().y << "}   " << myObject->getAccelleration().x << myObject->getAccelleration().y << myObject->getMass() << std::endl;
+    myManager.addObject("MyCircle", "Circle", {100,100}, 20, {100,300}, {10,20}, 100);
     
-    std::cout << myObject->getMass() << std::endl;
-
     myManager.printObjectInfo();
 
-    //TODO: produced errors for some reason, note there was a segmation fault -----------------------
-    Object* myCircle = myManager.getObjectByName("MyCircle");
-    myCircle->setMass(100);
-    std::cout << myCircle->getMass() << std::endl;
+    myManager.removeObjectByName("MyCircle");
+
+    myManager.printObjectInfo();
 
     return 0;
 }

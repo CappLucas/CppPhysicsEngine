@@ -8,7 +8,6 @@
 class Circle{
 public:
     Circle(Cooridinate newCenter, float newRadius) : radius(newRadius), center(newCenter){}
-    ~Circle();
 
     //------------ getters --------------
     float getRadius(){return radius;}
