@@ -1,5 +1,6 @@
 #include "Object.h"
 
+int Object::objects = 0;
 float Object::defaultMass = 1.0;
 float Object::defaultGravity = 0;
 

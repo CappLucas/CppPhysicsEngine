@@ -44,25 +44,27 @@ public:
     * @param objName a string of type std::string
     * @return returns an iterator to object of type: std::vector<Object*>::iterator
     */
-    std::vector<Object*>::iterator getObjectIteratorByName(std::string objName);
+    std::vector<Object*>::iterator getObjectIterator(std::string objName);
+    std::vector<Object*>::iterator getObjectIterator(int objId);
 
     /**
      * @details Given name, returns pointer to object in allObjects. if the name given is not found, it returns nullptr.
      * @param objName name of the object to delete.
      * @return returns pointer of type Object.
      */
-    Object *getObjectByName(std::string objName);
-    
+    Object *getObject(std::string objName);
+    Object *getObject(int objId);
     /**
      * @brief Creates object of given object constructor parameters.
      * @param objName name of object to create.
      */
-    void addObject(std::string objName, std::string objType, Plane newPlane, Velocity newVelocity = {0,0}, Acceleration newAcceleration = {0,0}, float newMass = 1);
-    void addObject(std::string objName, std::string objType, Cooridinate center, float radius, Velocity newVelocity = {0,0}, Acceleration newAcceleration = {0,0}, float newMass = 1);
+    void addObject(std::string newName, std::string objType, Plane newPlane, Velocity newVelocity = {0,0}, Acceleration newAcceleration = {0,0}, float newMass = 1);
+    void addObject(std::string newName, std::string objType, Cooridinate center, float radius, Velocity newVelocity = {0,0}, Acceleration newAcceleration = {0,0}, float newMass = 1);
     /**
      * @details Given name, it deletes the object with that name. Does not delete anything if allObjects is empty or name is not found in allObjects.
      */
-    void removeObjectByName(std::string objName);
+    void removeObject(std::string objId);
+    void removeObject(int objId);
 
     void printObjectInfo();
     // updates the position and velocity of the object based on delta time.

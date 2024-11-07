@@ -4,17 +4,19 @@
 #include "Header/ObjectManager.h"
 
 #include <iostream>
+#include <vector>
 
 int main(){
     ObjectManager myManager;
 
     Object::defaultMass = 20;
-    Object::defaultGravity = -21;
+    Object::defaultGravity = -29;
 
     myManager.addObject("MyRectangle", "Rectangle", {{100,150},{200,250}}, {20,20},{0,10});
 
-    //myManager.addObject("MyCircle", "Circle", {100,100}, 20, {100,300}, {10,20}, 100);
-    std::vector<Object*>::iterator = myManager.getObjectIteratorByName("MyRectangle");
+    myManager.addObject("MyCircle", "Circle", {100,100}, 20, {100,300}, {10,20}, 100);
+    
+
     std::cout << "Original:  \n\n" << std::endl;
     myManager.printObjectInfo();
     
@@ -25,6 +27,5 @@ int main(){
         std::cout << "\n";
     }
     
-
     return 0;
 }

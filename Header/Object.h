@@ -15,14 +15,22 @@
 
 class Object{
 public:
+    static int objects;
+
     static float defaultMass;
     static float defaultGravity;
 
     //constructor for rectangle
-    Object(std::string objName, std::string objType, Plane newPlane, Velocity newVelocity = {0,0}, Acceleration newAcceleration = {0,0}, float newMass = 1) : name(objName), type(objType), objectRectangle(new Rectangle(newPlane)),objectVelocity(newVelocity), objectAcceleration(newAcceleration), objectMass(newMass){}
+    Object(std::string newName, std::string objType, Plane newPlane, Velocity newVelocity = {0,0}, Acceleration newAcceleration = {0,0}, float newMass = 1) : name(newName), type(objType), objectRectangle(new Rectangle(newPlane)),objectVelocity(newVelocity), objectAcceleration(newAcceleration), objectMass(newMass){
+        id = objects;
+        objects++;
+    }
 
     //constructor for circle
-    Object(std::string objName, std::string objType, Cooridinate center, float radius, Velocity newVelocity = {0,0}, Acceleration newAcceleration = {0,0}, float newMass = 1) : name(objName), type(objType), objectCircle(new Circle(center,radius)), objectVelocity(newVelocity), objectAcceleration(newAcceleration), objectMass(newMass){}
+    Object(std::string newName, std::string objType, Cooridinate center, float radius, Velocity newVelocity = {0,0}, Acceleration newAcceleration = {0,0}, float newMass = 1) : name(newName), type(objType), objectCircle(new Circle(center,radius)), objectVelocity(newVelocity), objectAcceleration(newAcceleration), objectMass(newMass){
+        id = objects;
+        objects++;
+    }
 
     //public variables so that you can change them outside of class
     Circle *objectCircle = nullptr;
@@ -30,6 +38,8 @@ public:
 
     //---------------- getters ---------------------
     std::string getName(){return name;}
+    int getId(){return id;}
+    
     std::string getType(){return type;}
 
     float getMass(){return objectMass;}
@@ -49,8 +59,10 @@ public:
     void updateObject(float deltaTime);
 
 private:
-    std::string name;
+    int id;
 
+    std::string name;
+    
     std::string type;
 
     float objectMass;

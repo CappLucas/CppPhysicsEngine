@@ -12,7 +12,8 @@ ObjectManager::~ObjectManager()
     std::cout << "Objects deleted." << std::endl;
 }
 
-std::vector<Object*>::iterator ObjectManager::getObjectIteratorByName(std::string objName){
+//overloaded for finding with name
+std::vector<Object*>::iterator ObjectManager::getObjectIterator(std::string objName){
     auto conditions = [&objName](Object* &objIt){
         return objIt->getName() == objName;
     };
@@ -21,9 +22,30 @@ std::vector<Object*>::iterator ObjectManager::getObjectIteratorByName(std::strin
     
     return objectIterator;
 }
+//overloaded object iterator for finding with ids
+std::vector<Object*>::iterator ObjectManager::getObjectIterator(int newId){
+    auto conditions = [&newId](Object* &objIt){
+        return objIt->getId() == newId;
+    };
 
-Object *ObjectManager::getObjectByName(std::string objName){
-    std::vector<Object*>::iterator objectIterator = getObjectIteratorByName(objName);
+    std::vector<Object*>::iterator objectIterator = std::find_if(allObjects.begin(), allObjects.end(),conditions);
+    
+    return objectIterator;
+}
+//overloaded for name
+Object *ObjectManager::getObject(std::string objName){
+    std::vector<Object*>::iterator objectIterator = getObjectIterator(objName);
+    
+    if(objectIterator != allObjects.end()){
+        return *objectIterator;
+    }
+    else{
+        return nullptr;
+    }
+}
+//overloaded for id
+Object *ObjectManager::getObject(int newId){
+    std::vector<Object*>::iterator objectIterator = getObjectIterator(newId);
     
     if(objectIterator != allObjects.end()){
         return *objectIterator;
@@ -40,7 +62,7 @@ void ObjectManager::addObject(std::string objName, std::string objType, Plane ne
         allObjects.push_back(new Object(objName, objType, newPlane, newVelocity, newAcceleration, newMass));
     }
     else{
-        std::vector<Object*>::iterator objectIterator = getObjectIteratorByName(objName);
+        std::vector<Object*>::iterator objectIterator = getObjectIterator(objName);
 
         if(objectIterator != allObjects.end()){
             allObjects.push_back(new Object(objName, objType, newPlane,newVelocity, newAcceleration, newMass));
@@ -58,7 +80,7 @@ void ObjectManager::addObject(std::string objName, std::string objType, Cooridin
         allObjects.push_back(new Object(objName, objType, center, radius, newVelocity, newAcceleration, newMass));
     }
     else{
-        std::vector<Object*>::iterator objectIterator = getObjectIteratorByName(objName);
+        std::vector<Object*>::iterator objectIterator = getObjectIterator(objName);
 
         if(objectIterator == allObjects.end()){
             allObjects.push_back(new Object(objName, objType, center, radius, newVelocity, newAcceleration, newMass));
@@ -69,13 +91,13 @@ void ObjectManager::addObject(std::string objName, std::string objType, Cooridin
     }
 }
 
-void ObjectManager::removeObjectByName(std::string objName){
+void ObjectManager::removeObject(std::string objName){
     if(allObjects.empty()){
         std::cerr << "No objects to remove" << std::endl;
     }
     else{
 
-        std::vector<Object*>::iterator objectIterator = getObjectIteratorByName(objName);
+        std::vector<Object*>::iterator objectIterator = getObjectIterator(objName);
 
         if(objectIterator != allObjects.end()){
             delete *objectIterator;
@@ -83,6 +105,24 @@ void ObjectManager::removeObjectByName(std::string objName){
         }
         else{
             std::cerr << "Error: Deletion failed. Object named " << objName << " does not exist." << std::endl;
+        }
+    }
+}
+
+void ObjectManager::removeObject(int newId){
+    if(allObjects.empty()){
+        std::cerr << "No objects to remove" << std::endl;
+    }
+    else{
+
+        std::vector<Object*>::iterator objectIterator = getObjectIterator(newId);
+
+        if(objectIterator != allObjects.end()){
+            delete *objectIterator;
+            allObjects.erase(objectIterator);
+        }
+        else{
+            std::cerr << "Error: Deletion failed. Object with id " << newId << " does not exist." << std::endl;
         }
     }
 }
