@@ -16,8 +16,8 @@ void Object::updateObject(float deltaTime){
 
     //finding displacement
     Cooridinate displacement;
-    displacement.x = equations.findDisplacement(deltaTime, objectVelocity.x);
-    displacement.y = equations.findDisplacement(deltaTime, objectVelocity.y);
+    displacement.x = equations.findDisplacement(deltaTime, objectVelocity.x,objectAcceleration.x);
+    displacement.y = equations.findDisplacement(deltaTime, objectVelocity.y,objectAcceleration.y + gravityHolder);
 
     if(type == "Rectangle"){
         objectRectangle->move(displacement);
