@@ -14,6 +14,11 @@ public:
     Cooridinate getCenter(){return center;}
     float getDiameter(){return radius*2;}
 
+    Cooridinate getLeft(){return {center.x - radius, center.y};}
+    Cooridinate getRight(){return {center.x + radius, center.y};}
+    Cooridinate getTop(){return {center.x, center.y - radius};}
+    Cooridinate getBottom(){return {center.x, center.y + radius};}
+
     //------------ setters ---------------
     void setRadius(float newRadius){
         if(newRadius > 0){radius = newRadius;}

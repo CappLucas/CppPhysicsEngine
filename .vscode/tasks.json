@@ -14,6 +14,7 @@
                 "${workspaceFolder}/Source/Circle.cpp",
                 "${workspaceFolder}/Source/Rectangle.cpp",
                 "${workspaceFolder}/Source/PhysicsEquations.cpp",
+                "${workspaceFolder}/Source/CollisionDetectionManager.Cpp",
 
                 "-I", "${workspaceFolder}/Header", // Path to header files
                 "-o",
