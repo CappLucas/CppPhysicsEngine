@@ -1,7 +1,7 @@
 #include "CollisionDectectionManager.h"
 
 void CollisionDectectionManager::findCollisions(){
-
+    
 }
 
 void CollisionDectectionManager::resolveCollisions(){
