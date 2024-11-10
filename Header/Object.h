@@ -38,6 +38,7 @@ public:
 
     //---------------- getters ---------------------
     std::string getName(){return name;}
+
     int getId(){return id;}
     
     std::string getType(){return type;}
@@ -49,13 +50,23 @@ public:
     bool getIsAffectedByObjects(){return isAffectedByObjects;}
     bool getIsAffectedByGravity(){return isAffectedByGravity;}
     
+    float getGravity(){return gravity;}
+    float getElasticity(){return elasticity;}
+
     //----------------- setters ---------------------
     void setMass(float newMass){if(newMass >= 0){objectMass = newMass;};}
     void setVelocity(Velocity newVelocity){objectVelocity = newVelocity;}
     void setAcceleration(Acceleration newAcceleration){objectAcceleration = newAcceleration;}
+    
+    void setGravity(float newGravity){gravity = newGravity;}
+    void setElasticity(float newElasticity){if(newElasticity >= 0 && newElasticity <= 1){elasticity = newElasticity;}}
+
+    void setIsAffectedByObjects(bool newBool){isAffectedByObjects = newBool;}
+    void setIsAffectedByGravity(bool newBool){isAffectedByGravity = newBool;}
 
     //------------------ methods ----------------------
-    //updates position and velocity based on acceleration and stuff
+    //updates the position of the object based on the current velocity, acceleration, mass, gravity, elasticity, and other boolean values.
+    //no collision detection takes place.
     void updateObject(float deltaTime);
 
 private:
@@ -73,7 +84,9 @@ private:
     bool isAffectedByGravity = true;
 
     //reference to the static gravity variable so that when you change the static you change all the others too.
-    float &gravity = Object::defaultGravity;
+    float gravity = Object::defaultGravity;
+
+    float elasticity = 1; //perfectly elastic, and zero is perfectly inelastic.
 };
 
 #endif
