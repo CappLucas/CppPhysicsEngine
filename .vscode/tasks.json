@@ -8,9 +8,14 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${workspaceFolder}/Main.cpp",
+                "${workspaceFolder}/Main.cpp", // files to compile
                 "${workspaceFolder}/Source/ObjectManager.cpp",
                 "${workspaceFolder}/Source/Object.cpp",
+                "${workspaceFolder}/Source/Circle.cpp",
+                "${workspaceFolder}/Source/Rectangle.cpp",
+                "${workspaceFolder}/Source/PhysicsEquations.cpp",
+                "${workspaceFolder}/Source/CollisionDetectionManager.Cpp",
+
                 "-I", "${workspaceFolder}/Header", // Path to header files
                 "-o",
                 "${workspaceFolder}/main.exe" // Output executable in project root

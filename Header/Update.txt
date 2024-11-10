@@ -1,0 +1,11 @@
+sudo code 
+
+//Collision Class sudo code
+
+
+
+collisionManager{
+    public:
+        
+    private:
+}
