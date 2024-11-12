@@ -17,6 +17,8 @@ public:
     
 
     //------------------------- getters ---------------------------
+    Plane getPlane(){return plane;}
+
     Cooridinate getBottomLeftCorner(){return plane.bottomLeft;}
     Cooridinate getTopRightCorner(){return plane.topRight;}
 

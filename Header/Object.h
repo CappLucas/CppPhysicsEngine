@@ -10,6 +10,8 @@
 #include "Circle.h"
 #include "Rectangle.h"
 
+#include "BoundingBox.h"
+
 #include <string>
 #include <iostream>
 
@@ -65,6 +67,18 @@ public:
     void setIsAffectedByGravity(bool newBool){isAffectedByGravity = newBool;}
 
     //------------------ methods ----------------------
+
+    //make a function that gets the bounding box of the object, no matter the shape.
+    BoundingBox getBoundingBox(){
+        if(type == "Rectangle"){
+            return {objectRectangle->getPlane()};
+        }
+        else if(type == "Circle"){////////////errrrororororororororororss
+            BoundingBox box{{objectCircle->getLeft(),objectCircle->getBottom()}, {objectCircle->getRight(), objectCircle->getTop()}};
+            return box;
+        }
+    }
+
     //updates the position of the object based on the current velocity, acceleration, mass, gravity, elasticity, and other boolean values.
     //no collision detection takes place.
     void updateObject(float deltaTime);

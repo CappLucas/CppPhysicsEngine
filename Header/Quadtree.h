@@ -4,46 +4,37 @@
 #pragma once
 
 #include "Types.h"
-
+#include "Object.h"
+#include "BoundingBox.h"
 #include <cmath>
 
-//box used to represent the bounding boxes of each object 
-struct BoundingBox{
-    //sets the bottom left corner bound to teh farthest opposite point, same with top right corner
-    CornerStruct bounds{{Infinity,Infinity},{-Infinity, -Infinity}};
 
-    //make a function to set the boundary of the bounding box
 
-    //since default values are infinity, any new box that comes in with shrink the size, 
-    //effectively making a bounding box for our quadtree. Also, and new box will resize the bounding box to fit the new stuff
-    void mergeBox(BoundingBox mergingBox){
-        //expands the box if any value is greater than the current.
-        bounds.bottomLeft.x = std::min(bounds.bottomLeft.x, mergingBox.bounds.bottomLeft.x);
-        bounds.bottomLeft.y = std::min(bounds.bottomLeft.y, mergingBox.bounds.bottomLeft.y);
-        bounds.topRight.x = std::max(bounds.bottomLeft.x, mergingBox.bounds.bottomLeft.x);
-        bounds.topRight.x = std::max(bounds.bottomLeft.x, mergingBox.bounds.bottomLeft.x);
+//each quadtree has 4 other quadtrees by default set to a nullptr and has teh objects, or leaf nodes.
+struct Quadtree{
+    Quadtree(BoundingBox newBorder){
+        border = newBorder;
     }
+    ~Quadtree(){
+        //deletes all elements in tree and sets their values to nullptr
+        for(int i = 0; i < 4; i++){
+            delete children[i];
+            children[i] = nullptr;
+        } 
+    }
+
+    //holds children
+    Quadtree* children[4] = {nullptr,nullptr,nullptr,nullptr};
+    
+    BoundingBox border;
 };
 
-//function that loops through some container and returns a bounding box with the right size.
-template <class Iterator>
-BoundingBox findBoundingBox(Iterator begginning, Iterator end){
-    BoundingBox returnBox;
-    while(begginning != end){
-        returnBox.mergeBox(*Iterator);
-        begginning += 1;
+//builds the quadtree using a reference to the game objects.
+void buildTree(ObjectVector &allObjects){
+    //loop through items to make a bounding box
+    //then start making quadtrees from there?
+
+    for(Object* &object : allObjects){
     }
-    return returnBox;
 }
-
-struct Quadtree
-{
-public:
-    Quadtree();
-    ~Quadtree();
-
-private:
-
-};
-
 #endif
