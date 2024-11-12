@@ -5,24 +5,36 @@
 
 #include <utility>
 #include <vector>
+#include <limits>
 
-struct coordStruct{
+struct CoordStruct{
     float x;
     float y;
+
+    //allows for adding and subtracting cooridinates
+    CoordStruct operator + (CoordStruct &c){
+        return {x + c.x, y + c.y};
+    }
+    CoordStruct operator - (CoordStruct &c){
+        return {x + c.x, y + c.y};
+    }
 };
 
-struct cornerStruct{
-    coordStruct bottomLeft;
-    coordStruct topRight;
+struct CornerStruct{
+    CoordStruct bottomLeft;
+    CoordStruct topRight;
 };
 
-using Cooridinate = coordStruct;
+//is a const compiled at runtime with value infinity
+constexpr float Infinity = std::numeric_limits<float>::infinity();
 
-using Velocity = coordStruct;
+using Cooridinate = CoordStruct;
 
-using Acceleration = coordStruct;
+using Velocity = CoordStruct;
 
-using Plane = cornerStruct;
+using Acceleration = CoordStruct;
+
+using Plane = CornerStruct;
 
 using ObjectVector = std::vector<Object*>;
 

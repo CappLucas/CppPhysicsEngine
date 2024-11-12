@@ -14,7 +14,7 @@ public:
         plane.bottomLeft = newBottomLeftCorner;
         plane.topRight = {newBottomLeftCorner.x + length, newBottomLeftCorner.y + height};
     }
-    ~Rectangle();
+    
 
     //------------------------- getters ---------------------------
     Cooridinate getBottomLeftCorner(){return plane.bottomLeft;}
@@ -45,16 +45,16 @@ public:
     //------------------------- methods ----------------------------
     void moveTo(Cooridinate newPosition){
         //finds how much the rectangle has to move
-        Cooridinate displacement = {newPosition.x - plane.bottomLeft.x,newPosition.y - plane.bottomLeft.y};
+        Cooridinate displacement = newPosition - plane.bottomLeft;
 
         plane.bottomLeft = newPosition;
-        plane.topRight = {plane.topRight.x + displacement.x, plane.topRight.y + displacement.y};
+        plane.topRight = plane.topRight + displacement;
     };
     void move(Cooridinate displacement){
-        plane.bottomLeft.x += displacement.x;
-        plane.topRight.x += displacement.x;
-        plane.bottomLeft.y += displacement.y;
-        plane.topRight.y += displacement.y;
+
+        //using the overloaded plus operator
+        plane.bottomLeft = plane.bottomLeft + displacement;
+        plane.topRight = plane.topRight + displacement;
     };
 private:
     // holds the bottom left corner and the top right corner of the rectangle.
