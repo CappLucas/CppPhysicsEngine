@@ -6,7 +6,6 @@
 #include <utility>
 #include <vector>
 #include <limits>
-#include <memory>
 
 
 struct CoordStruct{
@@ -38,5 +37,11 @@ using Velocity = CoordStruct;
 using Acceleration = CoordStruct;
 
 using Plane = CornerStruct;
+
+
+class Object;
+using ObjectVector = std::vector<Object*>;
+
+using CollisionObjectVector = std::vector<ObjectVector>;
 
 #endif

@@ -4,6 +4,7 @@ int Object::objects = 0;
 float Object::defaultMass = 1.0;
 float Object::defaultGravity = 0;
 
+
 void Object::updateObject(float deltaTime){
     //include the equations
 

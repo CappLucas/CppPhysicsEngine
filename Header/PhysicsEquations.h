@@ -6,7 +6,6 @@
 #include "Types.h"
 
 #include <math.h>
-#include <memory>
 
 //holds the basic equations needed for physic calculations as functions.
 //The function name is the variable it is finding and the parameters are what it is finding it with.

@@ -7,7 +7,6 @@
 #include "Types.h"
 
 #include <vector>
-#include <memory>
 
 class CollisionDetectionManager
 {

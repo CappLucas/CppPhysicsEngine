@@ -10,7 +10,6 @@
 #include <vector>
 #include <string>
 #include <algorithm>
-#include <memory>
 
 /*------------------------class Structure ------------------
 
@@ -37,7 +36,7 @@ public:
     static float gravity;
     /// @brief returns the allObjects vector
     /// @return returns all objects. type: ObjectVector
-    ObjectVector getAllObjects(){return std::move(allObjects);};
+    ObjectVector getAllObjects(){return allObjects;}
 
     /**
     * @details given name, returns an iterator to the object from the allObjects vector. Has no processing  of the iterator, if iterator = allObjects.end() it will return the iterator anyway.
@@ -53,8 +52,8 @@ public:
      * @param objName name of the object to delete.
      * @return returns pointer of type Object.
      */
-    ObjectSmartPointer getObject(std::string objName);
-    ObjectSmartPointer getObject(int objId);
+    Object* getObject(std::string objName);
+    Object* getObject(int objId);
     /**
      * @brief Creates object of given object constructor parameters.
      * @param objName name of object to create.

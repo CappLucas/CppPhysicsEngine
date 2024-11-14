@@ -14,17 +14,7 @@
 
 #include <string>
 #include <iostream>
-#include <memory>
 #include <vector>
-
-//forward declaraction to allow the types
-class Object;
-
-using ObjectSmartPointer = std::unique_ptr<Object>;
-
-using ObjectVector = std::vector<ObjectSmartPointer>;
-
-using CollisionObjectVector = std::vector<ObjectVector>;
 
 class Object{
 public:
@@ -81,17 +71,20 @@ public:
 
     //make a function that gets the bounding box of the object, no matter the shape.
     BoundingBox getBoundingBox(){
+        BoundingBox box;
+
         if(type == "Rectangle"){
-            return {objectRectangle->getPlane()};
+            box.border = *objectRectangle;
+            return box;
         }
         else if(type == "Circle"){////////////errrrororororororororororss
             //bottomLeft corner cooridinate of circle
             Cooridinate bottomLeft = {objectCircle->getLeft().x,objectCircle->getBottom().y};
             Cooridinate topRight = {objectCircle->getRight().x,objectCircle->getTop().y};
 
+            Rectangle border({bottomLeft,topRight});
 
-            BoundingBox box;
-            box.border = {bottomLeft,topRight};
+            box.border = border;
             return box;
         }
     }
