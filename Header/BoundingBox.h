@@ -4,10 +4,13 @@
 #pragma once
 
 #include "Types.h"
+
+#include <cmath>
+#include <memory>
 //box used to represent the bounding boxes of each object 
 struct BoundingBox{
     //sets the bottom left corner bound to teh farthest opposite point, same with top right corner
-    CornerStruct bounds{{Infinity,Infinity},{-Infinity, -Infinity}};
+    Plane border{{Infinity,Infinity},{-Infinity, -Infinity}};
 
     //make a function to set the boundary of the bounding box
 
@@ -15,10 +18,10 @@ struct BoundingBox{
     //effectively making a bounding box for our quadtree. Also, and new box will resize the bounding box to fit the new stuff
     void mergeBox(BoundingBox mergingBox){
         //expands the box if any value is greater than the current.
-        bounds.bottomLeft.x = std::min(bounds.bottomLeft.x, mergingBox.bounds.bottomLeft.x);
-        bounds.bottomLeft.y = std::min(bounds.bottomLeft.y, mergingBox.bounds.bottomLeft.y);
-        bounds.topRight.x = std::max(bounds.bottomLeft.x, mergingBox.bounds.bottomLeft.x);
-        bounds.topRight.x = std::max(bounds.bottomLeft.x, mergingBox.bounds.bottomLeft.x);
+        border.bottomLeft.x = std::min(border.bottomLeft.x, mergingBox.border.bottomLeft.x);
+        border.bottomLeft.y = std::min(border.bottomLeft.y, mergingBox.border.bottomLeft.y);
+        border.topRight.x = std::max(border.bottomLeft.x, mergingBox.border.bottomLeft.x);
+        border.topRight.x = std::max(border.bottomLeft.x, mergingBox.border.bottomLeft.x);
     }
 };
 

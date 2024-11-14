@@ -3,7 +3,9 @@
 
 #pragma once
 
+#include <memory>
 #include "Types.h"
+
 
 class Rectangle{
 public:

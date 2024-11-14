@@ -14,6 +14,17 @@
 
 #include <string>
 #include <iostream>
+#include <memory>
+#include <vector>
+
+//forward declaraction to allow the types
+class Object;
+
+using ObjectSmartPointer = std::unique_ptr<Object>;
+
+using ObjectVector = std::vector<ObjectSmartPointer>;
+
+using CollisionObjectVector = std::vector<ObjectVector>;
 
 class Object{
 public:
@@ -74,7 +85,13 @@ public:
             return {objectRectangle->getPlane()};
         }
         else if(type == "Circle"){////////////errrrororororororororororss
-            BoundingBox box{{objectCircle->getLeft(),objectCircle->getBottom()}, {objectCircle->getRight(), objectCircle->getTop()}};
+            //bottomLeft corner cooridinate of circle
+            Cooridinate bottomLeft = {objectCircle->getLeft().x,objectCircle->getBottom().y};
+            Cooridinate topRight = {objectCircle->getRight().x,objectCircle->getTop().y};
+
+
+            BoundingBox box;
+            box.border = {bottomLeft,topRight};
             return box;
         }
     }

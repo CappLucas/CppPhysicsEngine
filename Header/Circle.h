@@ -4,6 +4,7 @@
 #pragma once
 
 #include "Types.h"
+#include <memory>
 
 class Circle{
 public:

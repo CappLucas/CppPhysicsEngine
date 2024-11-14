@@ -1,11 +1,13 @@
 #ifndef TYPES_H
 #define TYPES_H
 
-#include "Object.h"
+#pragma once
 
 #include <utility>
 #include <vector>
 #include <limits>
+#include <memory>
+
 
 struct CoordStruct{
     float x;
@@ -25,8 +27,9 @@ struct CornerStruct{
     CoordStruct topRight;
 };
 
-//is a const compiled at runtime with value infinity
-constexpr float Infinity = std::numeric_limits<float>::infinity();
+//a static float with value infinity
+extern float Infinity; 
+
 
 using Cooridinate = CoordStruct;
 
@@ -35,9 +38,5 @@ using Velocity = CoordStruct;
 using Acceleration = CoordStruct;
 
 using Plane = CornerStruct;
-
-using ObjectVector = std::vector<Object*>;
-
-using CollisionObjectVector = std::vector<ObjectVector>;
 
 #endif

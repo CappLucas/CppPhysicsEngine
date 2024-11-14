@@ -1,0 +1,39 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++.exe build active file",
+            "command": "C:/msys64/ucrt64/bin/g++.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${workspaceFolder}/Main.cpp", // files to compile
+                "${workspaceFolder}/Source/ObjectManager.cpp",
+                "${workspaceFolder}/Source/Object.cpp",
+                "${workspaceFolder}/Source/Circle.cpp",
+                "${workspaceFolder}/Source/Rectangle.cpp",
+                "${workspaceFolder}/Source/CollisionDetectionManager.cpp",
+                "${workspaceFolder}/Source/Quadtree.cpp",
+                "${workspaceFolder}/Source/BoundingBox.cpp",
+                "${workspaceFolder}/Source/PhysicsEquations.cpp",
+
+
+                "-I", "${workspaceFolder}/Header", // Path to header files
+                "-o",
+                "${workspaceFolder}/main.exe" // Output executable in project root
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}" // Set working directory to the project root
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Compiles Main.cpp, ObjectManager.cpp, and Object.cpp into main.exe."
+        }
+    ]
+}

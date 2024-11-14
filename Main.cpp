@@ -7,6 +7,7 @@
 #include <vector>
 
 int main(){
+    
     ObjectManager myManager;
 
     Object::defaultMass = 20;
