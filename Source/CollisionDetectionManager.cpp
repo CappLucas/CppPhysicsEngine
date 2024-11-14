@@ -1,19 +1,38 @@
 #include "CollisionDetectionManager.h"
 
-void CollisionDetectionManager::findCollisions(){
-    
-}
-
-void CollisionDetectionManager::resolveCollisions(){
-
-}
-
-void CollisionDetectionManager::runAll(){
-    findCollisions();
-    resolveCollisions();
-}
-
 CollisionDetectionManager::~CollisionDetectionManager()
 {
+    delete myQuadtree;
+}
+
+void CollisionDetectionManager::buildTree(ObjectVector &allObjects){
+    delete myQuadtree;
+    BoundingBox rootBox = findBoundingBox(allObjects.begin(), allObjects.end());
+    myQuadtree = new Quadtree{rootBox, 0};
+}
+
+void CollisionDetectionManager::findBroadPhaseCollisions(){
+    buildTree(allObjects);
+     myQuadtree->insertObjects(allObjects);
+     //TODO: query the built quadtree.
+}
+void CollisionDetectionManager::findNarrowPhaseCollisions(CollisionObjectVector &objects){
 
 }
+
+void CollisionDetectionManager::resolveCollisions(CollisionObjectVector &objects){
+
+}
+
+void CollisionDetectionManager::update(){
+    /* builds quadtree, queries the tree for potential collisions, 
+    then passes those collisions to the narrow phase, which finds 
+    collisions precisely, then passes those for sure collisions 
+    to the collision resolver where the objects are seperated 
+    and updated based on collision. */
+
+    findBroadPhaseCollisions();
+    findNarrowPhaseCollisions(broadPhaseCollisions);
+    resolveCollisions(narrowPhaseCollisions);
+}
+

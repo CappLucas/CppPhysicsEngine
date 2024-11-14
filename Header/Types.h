@@ -46,6 +46,7 @@ using Plane = CornerStruct;
 
 
 class Object;
+
 using ObjectVector = std::vector<Object*>;
 
 using CollisionObjectVector = std::vector<ObjectVector>;

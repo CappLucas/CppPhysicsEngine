@@ -77,10 +77,10 @@ public:
             box.border = *objectRectangle;
             return box;
         }
-        else if(type == "Circle"){////////////errrrororororororororororss
+        else if(type == "Circle"){
             //bottomLeft corner cooridinate of circle
-            Cooridinate bottomLeft = {objectCircle->getLeft().x,objectCircle->getBottom().y};
-            Cooridinate topRight = {objectCircle->getRight().x,objectCircle->getTop().y};
+            Cooridinate bottomLeft{objectCircle->getLeft().x,objectCircle->getBottom().y};
+            Cooridinate topRight{objectCircle->getRight().x,objectCircle->getTop().y};
 
             Rectangle border({bottomLeft,topRight});
 
