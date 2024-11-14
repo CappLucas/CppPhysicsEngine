@@ -9,6 +9,9 @@
 
 
 struct CoordStruct{
+    CoordStruct(){}
+    CoordStruct(float newX, float newY) : x(newX), y(newY){}
+
     float x;
     float y;
 
@@ -22,6 +25,9 @@ struct CoordStruct{
 };
 
 struct CornerStruct{
+    CornerStruct(){}
+    CornerStruct(CoordStruct newBottomLeft, CoordStruct newTopRight) : bottomLeft(newBottomLeft), topRight(newTopRight){}
+
     CoordStruct bottomLeft;
     CoordStruct topRight;
 };

@@ -37,7 +37,7 @@ struct Quadtree{
     static int MAX_CAPACITY;
     static int MAX_DEPTH;
 
-    Quadtree(BoundingBox newBox, ObjectVector newObjects, int newLevel) : box(newBox), objects(newObjects), level(newLevel){
+    Quadtree(BoundingBox newBox,  int parentLevel) : box(newBox),  level(parentLevel){
         level += 1;
     }
     ~Quadtree(){
@@ -51,11 +51,14 @@ struct Quadtree{
     Quadtree* topLeft = nullptr;
     Quadtree* topRight = nullptr;
 
+    //border, objects, and more.
     BoundingBox box;
     ObjectVector objects;
 
     int capacity;
     int level;
+
+    bool divided = false;
 
     //returns true of quadtree completely contains object.
     bool contains(Object* &object){
@@ -84,7 +87,22 @@ struct Quadtree{
         //split the parent objects among the children, and if the object overlaps a side of the tree, 
         //just share the object in the both children.
         //also transfer all perent objects to children tree nodes.
+
+        //settin the new widths and lengths of the new quadtrees.
+        Rectangle bottomLeftBox({box.border.getBottomLeftCorner(),{box.border.getCenter()}});
+        // makes the bottom right box my making a copy of the bottomLeft and moving over by the width of the bottomLeftCorner
+        Rectangle bottomRightBox = bottomLeftBox.showMove({bottomLeftBox.getLength(), 0});
+        Rectangle topRightBox({{box.border.getCenter()},box.border.getTopRightCorner()});
+        // makes the bottom right box my making a copy of the bottomLeft and moving left by the width of the topRightCorner
+        Rectangle topLeftBox = bottomLeftBox.showMove({-topRightBox.getLength(),0});
         
+
+        bottomLeft = new Quadtree(BoundingBox{bottomLeftBox}, level);
+        bottomRight = new Quadtree(BoundingBox{bottomRightBox}, level);
+        topLeft = new Quadtree(BoundingBox{topLeftBox}, level);
+        topRight = new Quadtree(BoundingBox{topRightBox}, level);
+
+        //TODO: loop through the trees, and insert -------------------------------------------------------- start here!!!!!!!!!!!!!!!!!!!!
     };
 
     void insert(Object* &object){
@@ -92,9 +110,33 @@ struct Quadtree{
         //after this insert if the objects is overlapping other nodes add it to them.
         //if the capacity is exceeded and the depth isn't, subdivide the quadtree and then
         //call the insert function on those quadtrees.
+
+        //if doesn't contain, just end function, you can't insert.
         if(!contains(object) || !overlaps(object)){
             return;
         }
+        //if this is already divided, try inserting the object into the devided regions.
+        if(divided){
+            bottomLeft->insert(object);
+            bottomRight->insert(object);
+            topLeft->insert(object);
+            topRight->insert(object);
+            return;
+        }
+        //if object is contained by or overlaps the tree and the capicty is less than the max, just insert into tree.
+        if(capacity < MAX_CAPACITY){
+            objects.push_back(object);
+            return;
+        }
+        //if object is contained by or overlaps the tree and the capicty is GREATER than the max, push the object 
+        //into the tree and then call the subdivide function, that will insert the new objects into the tree.
+        else{
+            //if the quadtree needs divided, add the object and then the subdivide 
+            //function will automatically distribute the objects amoung the children
+            objects.push_back(object);
+            subdivide(objects);
+        }
+        
         
     };
 };

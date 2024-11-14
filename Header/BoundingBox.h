@@ -10,11 +10,9 @@
 
 //box used to represent the bounding boxes of each object 
 struct BoundingBox{
+    BoundingBox(Rectangle newBorder = Rectangle{{{Infinity,Infinity},{-Infinity, -Infinity}}}) : border(newBorder){};
     //sets the bottom left corner bound to teh farthest opposite point, same with top right corner
-    Rectangle border{{{Infinity,Infinity},{-Infinity, -Infinity}}};
-
-    //make a function to set the boundary of the bounding box
-    
+    Rectangle border;
     //since default values are infinity, any new box that comes in with shrink the size, 
     //effectively making a bounding box for our quadtree. Also, and new box will resize the bounding box to fit the new stuff
     void mergeBox(BoundingBox mergingBox){

@@ -8,6 +8,8 @@
 
 class Rectangle{
 public:
+    //default constructor
+    Rectangle(){};
     //constructor by two points
     Rectangle(Plane newPlane) : plane(newPlane){};
     //constructor by one point and length and width values.
@@ -59,6 +61,13 @@ public:
         plane.bottomLeft = plane.bottomLeft + displacement;
         plane.topRight = plane.topRight + displacement;
     };
+
+    //shows where the objects new points would be after a move with displacent
+    Plane showMove(Cooridinate displacement){
+        Plane movingTo = {{plane.bottomLeft + displacement},{plane.topRight + displacement}};
+        return  movingTo;
+    }
+    
 private:
     // holds the bottom left corner and the top right corner of the rectangle.
     // first cooridinate: ----bottom left corner----- other one: -------top right corner
