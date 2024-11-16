@@ -1,7 +1,7 @@
 //file used for testing the features
 
-#include "Header/Object.h"
-#include "Header/ObjectManager.h"
+#include "Include/Header/Object.h"
+#include "Include/Header/ObjectManager.h"
 
 #include <iostream>
 #include <vector>
