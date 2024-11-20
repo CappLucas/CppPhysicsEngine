@@ -27,3 +27,22 @@ void Object::updateObject(float deltaTime){
         objectCircle->move(displacement);
     }
 }
+
+BoundingBox Object::getBoundingBox(){
+    BoundingBox box;
+
+    if(type == "Rectangle"){
+        box.border = *objectRectangle;
+        return box;
+    }
+    else if(type == "Circle"){
+        //bottomLeft corner cooridinate of circle
+        Cooridinate bottomLeft{objectCircle->getLeft().x,objectCircle->getBottom().y};
+        Cooridinate topRight{objectCircle->getRight().x,objectCircle->getTop().y};
+
+        Rectangle border({bottomLeft,topRight});
+
+        box.border = border;
+        return box;
+    }
+}

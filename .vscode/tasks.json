@@ -8,7 +8,7 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${workspaceFolder}/Main.cpp", // files to compile
+                "${workspaceFolder}/Main.cpp", 
                 "${workspaceFolder}/Source/ObjectManager.cpp",
                 "${workspaceFolder}/Source/Object.cpp",
                 "${workspaceFolder}/Source/Circle.cpp",
@@ -19,12 +19,12 @@
                 "${workspaceFolder}/Source/PhysicsEquations.cpp",
 
 
-                "-I", "${workspaceFolder}/Header", // Path to header files
+                "-I", "${workspaceFolder}/Include/Header/", 
                 "-o",
-                "${workspaceFolder}/main.exe" // Output executable in project root
+                "${workspaceFolder}/Build/main.exe" 
             ],
             "options": {
-                "cwd": "${workspaceFolder}" // Set working directory to the project root
+                "cwd": "${workspaceFolder}" 
             },
             "problemMatcher": [
                 "$gcc"

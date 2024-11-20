@@ -70,24 +70,7 @@ public:
     //------------------ methods ----------------------
 
     //make a function that gets the bounding box of the object, no matter the shape.
-    BoundingBox getBoundingBox(){
-        BoundingBox box;
-
-        if(type == "Rectangle"){
-            box.border = *objectRectangle;
-            return box;
-        }
-        else if(type == "Circle"){
-            //bottomLeft corner cooridinate of circle
-            Cooridinate bottomLeft{objectCircle->getLeft().x,objectCircle->getBottom().y};
-            Cooridinate topRight{objectCircle->getRight().x,objectCircle->getTop().y};
-
-            Rectangle border({bottomLeft,topRight});
-
-            box.border = border;
-            return box;
-        }
-    }
+    BoundingBox getBoundingBox();
 
     //updates the position of the object based on the current velocity, acceleration, mass, gravity, elasticity, and other boolean values.
     //no collision detection takes place.

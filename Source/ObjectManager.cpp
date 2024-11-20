@@ -2,8 +2,6 @@
 
 float gravity = 0;
 
-
-
 //overloaded for finding with name
 ObjectVector::iterator ObjectManager::getObjectIterator(std::string objName){
     auto conditions = [&objName](Object* &objIt){
