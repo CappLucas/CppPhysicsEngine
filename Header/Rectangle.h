@@ -38,6 +38,9 @@ public:
 
     Cooridinate getCenter(){return {getXCenter(),getYCenter()};}
 
+    std::vector<float> getCooridinates(){return {getLeftX(),getBottomY(), getRightX(), getTopY()};};
+    std::vector<float> getCLH(){return {getLeftX(),getBottomY(), getLength(), getHeight()};}
+    
     //------------------------- setters ----------------------------
     void setBottomLeft(Cooridinate newCorner){plane.bottomLeft = newCorner;}
     void setTopRight(Cooridinate newCorner){plane.topRight = newCorner;}

@@ -32,8 +32,10 @@ struct CornerStruct{
     CoordStruct topRight;
 };
 
-//a static float with value infinity
-extern float Infinity; 
+namespace CONSTANTS{
+    //a static float with value infinity
+    extern const float INFINITY_FLOAT; 
+};
 
 
 using Cooridinate = CoordStruct;

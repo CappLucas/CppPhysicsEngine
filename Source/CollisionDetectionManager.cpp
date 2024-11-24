@@ -7,7 +7,7 @@ CollisionDetectionManager::~CollisionDetectionManager()
 
 void CollisionDetectionManager::buildTree(ObjectVector &allObjects){
     delete myQuadtree;
-    BoundingBox rootBox = findBoundingBox(allObjects.begin(), allObjects.end());
+    BoundingBox rootBox = BoundingBox::findBoundingBox(allObjects.begin(), allObjects.end());
     myQuadtree = new Quadtree{rootBox, 0};
 }
 

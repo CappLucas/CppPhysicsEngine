@@ -7,8 +7,10 @@
             "command": "C:/msys64/ucrt64/bin/g++.exe",
             "args": [
                 "-fdiagnostics-color=always",
-                "-g",
+
                 "${workspaceFolder}/Main.cpp", 
+                "-g",
+                "${workspaceFolder}/Source/Types.cpp",
                 "${workspaceFolder}/Source/ObjectManager.cpp",
                 "${workspaceFolder}/Source/Object.cpp",
                 "${workspaceFolder}/Source/Circle.cpp",
@@ -18,11 +20,19 @@
                 "${workspaceFolder}/Source/BoundingBox.cpp",
                 "${workspaceFolder}/Source/PhysicsEquations.cpp",
 
+                "-I", "${workspaceFolder}/Header/", 
+                "-I", "C:/Libraries/SDL2/include",
+                "-L", "C:/Libraries/SDL2/lib",
+                
+                "-lSDL2main",
+                "-lSDL2",
+                
+                "-mwindows",
 
-                "-I", "${workspaceFolder}/Include/Header/", 
                 "-o",
                 "${workspaceFolder}/Build/main.exe" 
             ],
+            
             "options": {
                 "cwd": "${workspaceFolder}" 
             },
@@ -33,7 +43,7 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "detail": "Compiles Main.cpp, ObjectManager.cpp, and Object.cpp into main.exe."
+            "detail": "Compiles the classes, Main.cpp, and the SDL2 library into main.cpp"
         }
     ]
 }

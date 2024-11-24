@@ -1,3 +1,5 @@
 #include "Types.h"
 
-float infinity = std::numeric_limits<float>::infinity();
+namespace CONSTANTS{
+    const float INFINITY_FLOAT = std::numeric_limits<float>::infinity();
+};

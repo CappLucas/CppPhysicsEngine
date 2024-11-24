@@ -1,5 +1,7 @@
 #include "Object.h"
 
+#include "BoundingBox.h"
+
 int Object::objects = 0;
 float Object::defaultMass = 1.0;
 float Object::defaultGravity = 0;
@@ -33,7 +35,6 @@ BoundingBox Object::getBoundingBox(){
 
     if(type == "Rectangle"){
         box.border = *objectRectangle;
-        return box;
     }
     else if(type == "Circle"){
         //bottomLeft corner cooridinate of circle
@@ -43,6 +44,6 @@ BoundingBox Object::getBoundingBox(){
         Rectangle border({bottomLeft,topRight});
 
         box.border = border;
-        return box;
     }
+    return box;
 }

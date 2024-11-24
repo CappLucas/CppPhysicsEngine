@@ -10,11 +10,12 @@
 #include "Circle.h"
 #include "Rectangle.h"
 
-#include "BoundingBox.h"
-
 #include <string>
 #include <iostream>
 #include <vector>
+#include <limits>
+
+class BoundingBox;
 
 class Object{
 public:

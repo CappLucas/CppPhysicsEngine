@@ -1,4 +1,5 @@
 #include "BoundingBox.h"
+#include "Object.h"
 
 void BoundingBox::mergeBox(BoundingBox mergingBox){
     //expands the box if any value is greater than the current.
@@ -8,13 +9,12 @@ void BoundingBox::mergeBox(BoundingBox mergingBox){
     border.setTopY(std::max(border.getTopY(), mergingBox.border.getTopY()));
 }
 
-template <class Iterator>
-BoundingBox findBoundingBox(Iterator begginning, Iterator end){
+BoundingBox BoundingBox::findBoundingBox(ObjectVector::iterator begginning, ObjectVector::iterator end){
     BoundingBox returnBox;
 
     while(begginning != end){
-        returnBox.mergeBox(*begginning);
-
+        Object* obj = *begginning;
+        returnBox.mergeBox(obj->getBoundingBox());
         begginning += 1;
     }
     return returnBox;
