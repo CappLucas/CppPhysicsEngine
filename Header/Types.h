@@ -6,12 +6,13 @@
 #include <utility>
 #include <vector>
 #include <limits>
+#include <cmath>
 
-namespace TypesSpace{
+namespace TypeSpace{
 
     namespace PositionSpace{
 
-        struct CoordStruct{
+        typedef struct CoordStruct{
             CoordStruct(){}
             CoordStruct(float newX, float newY) : x(newX), y(newY){}
 
@@ -22,16 +23,21 @@ namespace TypesSpace{
             CoordStruct operator - (CoordStruct &c);
             CoordStruct operator * (CoordStruct &c);
             CoordStruct operator / (CoordStruct &c);
+
+            float distanceTo(CoordStruct &c);
         };
 
-        struct CornerStruct{
+        typedef struct CornerStruct{
             CornerStruct(){}
             CornerStruct(CoordStruct newBottomLeft, CoordStruct newTopRight) : bottomLeft(newBottomLeft), topRight(newTopRight){}
 
             CoordStruct bottomLeft;
             CoordStruct topRight;
         };
-    };
+
+        float distance(CoordStruct &point1, CoordStruct &point2);
+        float diagnal(CornerStruct &corner);
+    }
     
     //holds everything for vectors even functions
     namespace VectorSpace{
@@ -51,11 +57,11 @@ namespace TypesSpace{
         };
 
         VectorStruct normalize(VectorStruct v);
-    };
+    }
 
     namespace ConstantSpace{
         extern const float INFINITY_FLOAT; 
-    };
+    }
 
     namespace EnumSpace{
         enum class OBJECTTYPE{
@@ -63,7 +69,7 @@ namespace TypesSpace{
             CIRCLE,
             TRIANGLE
         };
-    };
+    }
 
     using Cooridinate = PositionSpace::CoordStruct;
     using Corner = PositionSpace::CornerStruct;
