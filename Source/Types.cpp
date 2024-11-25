@@ -1,5 +1,38 @@
 #include "Types.h"
 
-namespace CONSTANTS{
-    const float INFINITY_FLOAT = std::numeric_limits<float>::infinity();
-};
+//there are errors
+namespace TypeSpace{
+    namespace PositionSpace{
+        
+        CoordStruct CoordStruct::operator + (CoordStruct &c){
+            return {x + c.x, y + c.y};
+        }
+        CoordStruct CoordStruct::operator - (CoordStruct &c){
+            return {x - c.x, y - c.y};
+        }
+        CoordStruct CoordStruct::operator * (CoordStruct &c){
+            return {x * c.x, y * c.y};
+        }
+        CoordStruct CoordStruct::operator / (CoordStruct &c){
+            return {x / c.x, y / c.y};
+        }
+    }
+    namespace VectorSpace{
+        VectorStruct VectorStruct::operator + (VectorStruct &v){
+            return {x + v.x, y + v.y};
+        }
+        VectorStruct VectorStruct::operator - (VectorStruct &v){
+            return {x - v.x, y - v.y};
+        }
+        VectorStruct VectorStruct::operator * (VectorStruct &v){
+            return {x * v.x, y * v.y};
+        }
+        VectorStruct VectorStruct::operator / (VectorStruct &v){
+            return {x / v.x, y / v.y};
+        }
+    }
+}
+
+
+
+

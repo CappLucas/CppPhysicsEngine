@@ -27,7 +27,7 @@
                 "-lSDL2main",
                 "-lSDL2",
                 
-                "-mwindows",
+                //"-mwindows", uncomment to stop the terminal opening
 
                 "-o",
                 "${workspaceFolder}/Build/main.exe" 
