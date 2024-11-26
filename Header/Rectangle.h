@@ -5,19 +5,16 @@
 
 #include "Types.h"
 
+using namespace TypeSpace;
 
 class Rectangle{
 public:
     //default constructor
-    Rectangle(){};
+    Rectangle();
     //constructor by two points
-    Rectangle(Plane newPlane) : plane(newPlane){};
+    Rectangle(Plane newPlane);
     //constructor by one point and length and width values.
-    Rectangle(Cooridinate newBottomLeftCorner, float length, float height){
-        plane.bottomLeft = newBottomLeftCorner;
-        plane.topRight = {newBottomLeftCorner.x + length, newBottomLeftCorner.y + height};
-    }
-    
+    Rectangle(Cooridinate newBottomLeftCorner, float length, float height);
 
     //------------------------- getters ---------------------------
     Plane getPlane(){return plane;}
@@ -51,29 +48,12 @@ public:
     void setTopY(float topY){if(topY > getBottomY()){plane.topRight.x = topY;}};
     
     //------------------------- methods ----------------------------
-    void moveTo(Cooridinate newPosition){
-        //finds how much the rectangle has to move
-        Cooridinate displacement = newPosition - plane.bottomLeft;
-
-        plane.bottomLeft = newPosition;
-        plane.topRight = plane.topRight + displacement;
-    };
-    void move(Cooridinate displacement){
-
-        //using the overloaded plus operator
-        plane.bottomLeft = plane.bottomLeft + displacement;
-        plane.topRight = plane.topRight + displacement;
-    };
-
-    //shows where the objects new points would be after a move with displacent
-    Plane showMove(Cooridinate displacement){
-        Plane movingTo = {{plane.bottomLeft + displacement},{plane.topRight + displacement}};
-        return  movingTo;
-    }
+    void moveTo(Cooridinate newPosition);
+    void move(Cooridinate displacement);
+    Plane showMove(Cooridinate displacement);
     
 private:
-    // holds the bottom left corner and the top right corner of the rectangle.
-    // first cooridinate: ----bottom left corner----- other one: -------top right corner
+    //holds bottom left and top right corner of the rectangle
     Plane plane;
 };
 

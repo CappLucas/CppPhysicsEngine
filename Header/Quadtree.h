@@ -16,7 +16,7 @@ struct Quadtree{
     static int MAX_CAPACITY;
     static int MAX_DEPTH;
 
-    Quadtree(BoundingBox newBox,  int parentLevel) : box(newBox),  level(parentLevel){level += 1;}
+    Quadtree(BoundingBoxSpace::BoundingBox newBox,  int parentLevel) : box(newBox),  level(parentLevel){level += 1;}
     ~Quadtree();
     //holds children
     Quadtree* bottomLeft = nullptr;
@@ -25,8 +25,9 @@ struct Quadtree{
     Quadtree* topRight = nullptr;
 
     //border, objects, and more.
-    BoundingBox box;
-    ObjectVector objects;
+    BoundingBoxSpace::BoundingBox box;
+
+    ObjectSpace::ObjectVector objects;
 
     int capacity;
     int level;
@@ -34,14 +35,14 @@ struct Quadtree{
     bool divided = false;
 
     //returns true of quadtree completely contains object.
-    bool contains(Object* &object);
-    bool overlaps(Object* &object);
+    bool contains(ObjectSpace::Object* &object);
+    bool overlaps(ObjectSpace::Object* &object);
 
-    void subdivide(ObjectVector &parentObjects);
-    void insert(Object* &object);
+    void subdivide(ObjectSpace::ObjectVector &parentObjects);
+    void insert(ObjectSpace::Object* &object);
 
     //loops through objects to insert them.
-    void insertObjects(ObjectVector &allObjects);
+    void insertObjects(ObjectSpace::ObjectVector &allObjects);
 };
 
 #endif

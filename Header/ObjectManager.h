@@ -30,13 +30,16 @@ Each object has a class representing a shape it could be and things like velocit
  * within the simulation. It provides methods to add, remove, and retrieve
  * objects by their names, as well as to access the complete list of objects.
  */
+
+using namespace TypeSpace;
+
 class ObjectManager{
 public:
     
     static float gravity;
     /// @brief returns the allObjects vector
     /// @return returns all objects. type: ObjectVector
-    ObjectVector getAllObjects(){return allObjects;}
+    ObjectSpace::ObjectVector getAllObjects(){return allObjects;}
 
     /**
     * @details given name, returns an iterator to the object from the allObjects vector. Has no processing  of the iterator, if iterator = allObjects.end() it will return the iterator anyway.
@@ -44,16 +47,16 @@ public:
     * @param objName a string of type std::string
     * @return returns an iterator to object of type: ObjectVector::iterator
     */
-    ObjectVector::iterator getObjectIterator(std::string objName);
-    ObjectVector::iterator getObjectIterator(int objId);
+    ObjectSpace::ObjectVector::iterator getObjectIterator(std::string objName);
+    ObjectSpace::ObjectVector::iterator getObjectIterator(int objId);
 
     /**
      * @details Given name, returns pointer to object in allObjects. if the name given is not found, it returns nullptr.
      * @param objName name of the object to delete.
      * @return returns pointer of type Object.
      */
-    Object* getObject(std::string objName);
-    Object* getObject(int objId);
+    ObjectSpace::Object* getObject(std::string objName);
+    ObjectSpace::Object* getObject(int objId);
     /**
      * @brief Creates object of given object constructor parameters.
      * @param objName name of object to create.
@@ -71,7 +74,7 @@ public:
     void updateObjects(float deltaTime);
 private:
     /// @brief Stores all game objects.
-    ObjectVector allObjects;
+    ObjectSpace::ObjectVector allObjects;
 };
 
 #endif

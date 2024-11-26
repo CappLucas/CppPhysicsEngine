@@ -11,7 +11,7 @@ Quadtree::~Quadtree(){
     delete topRight;
 }
 
-bool Quadtree::contains(Object* &object){
+bool Quadtree::contains(ObjectSpace::Object* &object){
     Rectangle objectBorder = object->getBoundingBox().border;
 
     return (objectBorder.getLeftX() >= box.border.getLeftX() && 
@@ -20,7 +20,7 @@ bool Quadtree::contains(Object* &object){
         objectBorder.getTopY() <= box.border.getTopY());
 };
 
-bool Quadtree::overlaps(Object* &object){
+bool Quadtree::overlaps(ObjectSpace::Object* &object){
     Rectangle objectBorder = object->getBoundingBox().border;
 
     // Check if the object is completely outside the quadtree node's bounds
@@ -30,7 +30,7 @@ bool Quadtree::overlaps(Object* &object){
              objectBorder.getBottomY() >= box.border.getTopY());
 }
 
-void Quadtree::subdivide(ObjectVector &parentObjects){
+void Quadtree::subdivide(ObjectSpace::ObjectVector &parentObjects){
     //split the parent objects among the children, and if the object overlaps a side of the tree, 
     //just share the object in the both children.
     //also transfer all perent objects to children tree nodes.
@@ -43,11 +43,10 @@ void Quadtree::subdivide(ObjectVector &parentObjects){
     // makes the bottom right box my making a copy of the bottomLeft and moving left by the width of the topRightCorner
     Rectangle topLeftBox = bottomLeftBox.showMove({-topRightBox.getLength(),0});
         
-
-    bottomLeft = new Quadtree(BoundingBox{bottomLeftBox}, level);
-    bottomRight = new Quadtree(BoundingBox{bottomRightBox}, level);
-    topLeft = new Quadtree(BoundingBox{topLeftBox}, level);
-    topRight = new Quadtree(BoundingBox{topRightBox}, level);
+    bottomLeft = new Quadtree(BoundingBoxSpace::BoundingBox{bottomLeftBox}, level);
+    bottomRight = new Quadtree(BoundingBoxSpace::BoundingBox{bottomRightBox}, level);
+    topLeft = new Quadtree(BoundingBoxSpace::BoundingBox{topLeftBox}, level);
+    topRight = new Quadtree(BoundingBoxSpace::BoundingBox{topRightBox}, level);
 
     //transfers the objects to the children and clears vector, not that calling insert for each of these objects starts the cycle again.
     bottomLeft->insertObjects(objects);
@@ -58,7 +57,7 @@ void Quadtree::subdivide(ObjectVector &parentObjects){
     objects.clear();
 };
 
-void Quadtree::insert(Object* &object){
+void Quadtree::insert(ObjectSpace::Object* &object){
     //if the capacity is not exceeded, and the quadtree contains or overlaps with the object, insert the object into the quadtree.
     //after this insert if the objects is overlapping other nodes add it to them.
     //if the capacity is exceeded and the depth isn't, subdivide the quadtree and then
@@ -91,8 +90,8 @@ void Quadtree::insert(Object* &object){
     }
 };
 
-void Quadtree::insertObjects(ObjectVector &allObjects){
-    for(Object* &object : allObjects){
+void Quadtree::insertObjects(ObjectSpace::ObjectVector &allObjects){
+    for(ObjectSpace::Object* &object : allObjects){
         insert(object);
     }
 }

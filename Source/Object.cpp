@@ -30,8 +30,8 @@ void Object::updateObject(float deltaTime){
     }
 }
 
-BoundingBox Object::getBoundingBox(){
-    BoundingBox box;
+BoundingBoxSpace::BoundingBox Object::getBoundingBox(){
+    BoundingBoxSpace::BoundingBox box;
 
     if(type == "Rectangle"){
         box.border = *objectRectangle;

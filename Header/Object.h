@@ -15,86 +15,95 @@
 #include <vector>
 #include <limits>
 
-class BoundingBox;
+//holds object class and the types and functions involved with them
 
-class Object{
-public:
-    static int objects;
+namespace ObjectSpace{
+    //forward declaration
+    class BoundingBox;
 
-    static float defaultMass;
-    static float defaultGravity;
+    class Object{
+    public:
+        static int objects;
 
-    //constructor for rectangle
-    Object(std::string newName, std::string objType, Plane newPlane, Velocity newVelocity = {0,0}, Acceleration newAcceleration = {0,0}, float newMass = 1) : name(newName), type(objType), objectRectangle(new Rectangle(newPlane)),objectVelocity(newVelocity), objectAcceleration(newAcceleration), objectMass(newMass){
-        id = objects;
-        objects++;
-    }
+        static float defaultMass;
+        static float defaultGravity;
 
-    //constructor for circle
-    Object(std::string newName, std::string objType, Cooridinate center, float radius, Velocity newVelocity = {0,0}, Acceleration newAcceleration = {0,0}, float newMass = 1) : name(newName), type(objType), objectCircle(new Circle(center,radius)), objectVelocity(newVelocity), objectAcceleration(newAcceleration), objectMass(newMass){
-        id = objects;
-        objects++;
-    }
+        //constructor for rectangle
+        Object(std::string newName, std::string objType, Plane newPlane, Velocity newVelocity = {0,0}, Acceleration newAcceleration = {0,0}, float newMass = 1) : name(newName), type(objType), objectRectangle(new Rectangle(newPlane)),objectVelocity(newVelocity), objectAcceleration(newAcceleration), objectMass(newMass){
+            id = objects;
+            objects++;
+        }
 
-    //public variables so that you can change them outside of class
-    Circle *objectCircle = nullptr;
-    Rectangle *objectRectangle = nullptr;
+        //constructor for circle
+        Object(std::string newName, std::string objType, Cooridinate center, float radius, Velocity newVelocity = {0,0}, Acceleration newAcceleration = {0,0}, float newMass = 1) : name(newName), type(objType), objectCircle(new Circle(center,radius)), objectVelocity(newVelocity), objectAcceleration(newAcceleration), objectMass(newMass){
+            id = objects;
+            objects++;
+        }
 
-    //---------------- getters ---------------------
-    std::string getName(){return name;}
+        //public variables so that you can change them outside of class
+        Circle *objectCircle = nullptr;
+        Rectangle *objectRectangle = nullptr;
 
-    int getId(){return id;}
-    
-    std::string getType(){return type;}
+        //---------------- getters ---------------------
+        std::string getName(){return name;}
 
-    float getMass(){return objectMass;}
-    Velocity getVelocity(){return objectVelocity;}
-    Acceleration getAcceleration(){return objectAcceleration;}
+        int getId(){return id;}
 
-    bool getIsAffectedByObjects(){return isAffectedByObjects;}
-    bool getIsAffectedByGravity(){return isAffectedByGravity;}
-    
-    float getGravity(){return gravity;}
-    float getElasticity(){return elasticity;}
+        std::string getType(){return type;}
 
-    //----------------- setters ---------------------
-    void setMass(float newMass){if(newMass >= 0){objectMass = newMass;};}
-    void setVelocity(Velocity newVelocity){objectVelocity = newVelocity;}
-    void setAcceleration(Acceleration newAcceleration){objectAcceleration = newAcceleration;}
-    
-    void setGravity(float newGravity){gravity = newGravity;}
-    void setElasticity(float newElasticity){if(newElasticity >= 0 && newElasticity <= 1){elasticity = newElasticity;}}
+        float getMass(){return objectMass;}
+        Velocity getVelocity(){return objectVelocity;}
+        Acceleration getAcceleration(){return objectAcceleration;}
 
-    void setIsAffectedByObjects(bool newBool){isAffectedByObjects = newBool;}
-    void setIsAffectedByGravity(bool newBool){isAffectedByGravity = newBool;}
+        bool getIsAffectedByObjects(){return isAffectedByObjects;}
+        bool getIsAffectedByGravity(){return isAffectedByGravity;}
 
-    //------------------ methods ----------------------
+        float getGravity(){return gravity;}
+        float getElasticity(){return elasticity;}
 
-    //make a function that gets the bounding box of the object, no matter the shape.
-    BoundingBox getBoundingBox();
+        //----------------- setters ---------------------
+        void setMass(float newMass){if(newMass >= 0){objectMass = newMass;};}
+        void setVelocity(Velocity newVelocity){objectVelocity = newVelocity;}
+        void setAcceleration(Acceleration newAcceleration){objectAcceleration = newAcceleration;}
 
-    //updates the position of the object based on the current velocity, acceleration, mass, gravity, elasticity, and other boolean values.
-    //no collision detection takes place.
-    void updateObject(float deltaTime);
+        void setGravity(float newGravity){gravity = newGravity;}
+        void setElasticity(float newElasticity){if(newElasticity >= 0 && newElasticity <= 1){elasticity = newElasticity;}}
 
-private:
-    int id;
+        void setIsAffectedByObjects(bool newBool){isAffectedByObjects = newBool;}
+        void setIsAffectedByGravity(bool newBool){isAffectedByGravity = newBool;}
 
-    std::string name;
-    
-    std::string type;
+        //------------------ methods ----------------------
 
-    float objectMass;
-    Velocity objectVelocity;
-    Acceleration objectAcceleration;
-        
-    bool isAffectedByObjects = true;
-    bool isAffectedByGravity = true;
+        //make a function that gets the bounding box of the object, no matter the shape.
+        BoundingBoxSpace::BoundingBox getBoundingBox();
 
-    //reference to the static gravity variable so that when you change the static you change all the others too.
-    float gravity = Object::defaultGravity;
+        //updates the position of the object based on the current velocity, acceleration, mass, gravity, elasticity, and other boolean values.
+        //no collision detection takes place.
+        void updateObject(float deltaTime);
 
-    float elasticity = 1; //perfectly elastic, and zero is perfectly inelastic.
-};
+    private:
+        int id;
+
+        std::string name;
+
+        std::string type;
+
+        float objectMass;
+        Velocity objectVelocity;
+        Acceleration objectAcceleration;
+
+        bool isAffectedByObjects = true;
+        bool isAffectedByGravity = true;
+
+        //reference to the static gravity variable so that when you change the static you change all the others too.
+        float gravity = Object::defaultGravity;
+
+        float elasticity = 1; //perfectly elastic, and zero is perfectly inelastic.
+    };
+
+    using ObjectVector = std::vector<Object*>;
+    using CollisionObjectVector = std::vector<ObjectVector>;
+}
+
 
 #endif

@@ -3,28 +3,28 @@
 float gravity = 0;
 
 //overloaded for finding with name
-ObjectVector::iterator ObjectManager::getObjectIterator(std::string objName){
-    auto conditions = [&objName](Object* &objIt){
+ObjectSpace::ObjectVector::iterator ObjectManager::getObjectIterator(std::string objName){
+    auto conditions = [&objName](ObjectSpace::Object* &objIt){
         return objIt->getName() == objName;
     };
 
-    ObjectVector::iterator objectIterator = std::find_if(allObjects.begin(), allObjects.end(),conditions);
+    ObjectSpace::ObjectVector::iterator objectIterator = std::find_if(allObjects.begin(), allObjects.end(),conditions);
     
     return objectIterator;
 }
 //overloaded object iterator for finding with ids
-ObjectVector::iterator ObjectManager::getObjectIterator(int newId){
-    auto conditions = [&newId](Object* &objIt){
+ObjectSpace::ObjectVector::iterator ObjectManager::getObjectIterator(int newId){
+    auto conditions = [&newId](ObjectSpace::Object* &objIt){
         return objIt->getId() == newId;
     };
 
-    ObjectVector::iterator objectIterator = std::find_if(allObjects.begin(), allObjects.end(),conditions);
+    ObjectSpace::ObjectVector::iterator objectIterator = std::find_if(allObjects.begin(), allObjects.end(),conditions);
     
     return objectIterator;
 }
 //overloaded for name
-Object* ObjectManager::getObject(std::string objName){
-    ObjectVector::iterator objectIterator = getObjectIterator(objName);
+ObjectSpace::Object* ObjectManager::getObject(std::string objName){
+    ObjectSpace::ObjectVector::iterator objectIterator = getObjectIterator(objName);
     
     if(objectIterator != allObjects.end()){
         return *objectIterator;
@@ -34,8 +34,8 @@ Object* ObjectManager::getObject(std::string objName){
     }
 }
 //overloaded for id
-Object* ObjectManager::getObject(int newId){
-    ObjectVector::iterator objectIterator = getObjectIterator(newId);
+ObjectSpace::Object* ObjectManager::getObject(int newId){
+    ObjectSpace::ObjectVector::iterator objectIterator = getObjectIterator(newId);
     
     if(objectIterator != allObjects.end()){
         return *objectIterator;
@@ -48,10 +48,10 @@ Object* ObjectManager::getObject(int newId){
 //rectangle object adder
 void ObjectManager::addObject(std::string objName, std::string objType, Plane newPlane, Velocity newVelocity, Acceleration newAcceleration, float newMass){
     
-    ObjectVector::iterator objectIterator = getObjectIterator(objName);
+    ObjectSpace::ObjectVector::iterator objectIterator = getObjectIterator(objName);
 
     if(objectIterator == allObjects.end()){
-        allObjects.push_back(new Object(objName, objType, newPlane, newVelocity, newAcceleration, newMass));
+        allObjects.push_back(new ObjectSpace::Object(objName, objType, newPlane, newVelocity, newAcceleration, newMass));
     }
     else{
         std::cerr << "Error: Creation failed. Object named " << objName << " already exists." << std::endl;
@@ -61,10 +61,10 @@ void ObjectManager::addObject(std::string objName, std::string objType, Plane ne
 //rectangle object adder
 void ObjectManager::addObject(std::string objName, std::string objType, Cooridinate center, float radius, Velocity newVelocity, Acceleration newAcceleration, float newMass){
     
-    ObjectVector::iterator objectIterator = getObjectIterator(objName);
+    ObjectSpace::ObjectVector::iterator objectIterator = getObjectIterator(objName);
 
     if(objectIterator == allObjects.end()){
-        allObjects.push_back(new Object(objName, objType, center, radius, newVelocity, newAcceleration, newMass));
+        allObjects.push_back(new ObjectSpace::Object(objName, objType, center, radius, newVelocity, newAcceleration, newMass));
     }
     else{
         std::cerr << "Error: Creation failed. Object named " << objName << " already exists." << std::endl;
@@ -74,7 +74,7 @@ void ObjectManager::addObject(std::string objName, std::string objType, Cooridin
 
 void ObjectManager::removeObject(std::string objName){
 
-    ObjectVector::iterator objectIterator = getObjectIterator(objName);
+    ObjectSpace::ObjectVector::iterator objectIterator = getObjectIterator(objName);
 
     if(objectIterator != allObjects.end()){
         allObjects.erase(objectIterator);
@@ -86,7 +86,7 @@ void ObjectManager::removeObject(std::string objName){
 
 void ObjectManager::removeObject(int newId){
 
-    ObjectVector::iterator objectIterator = getObjectIterator(newId);
+    ObjectSpace::ObjectVector::iterator objectIterator = getObjectIterator(newId);
 
     if(objectIterator != allObjects.end()){
         allObjects.erase(objectIterator);
@@ -97,7 +97,7 @@ void ObjectManager::removeObject(int newId){
 }
 
 void ObjectManager::printObjectInfo(){
-    for(Object* &objectIterator : allObjects){
+    for(ObjectSpace::Object* &objectIterator : allObjects){
         std::cout << "Object Name: " << objectIterator->getName() << std::endl;
         std::cout <<  "\tObject Type: " << objectIterator->getType() << "  Velocity: {" << objectIterator->getVelocity().x << ", " << objectIterator->getVelocity().y << "}  Accelleration: {" << objectIterator->getAcceleration().x << ", " << objectIterator->getAcceleration().x << "}  Mass: " << objectIterator->getMass();
 
@@ -119,7 +119,7 @@ void ObjectManager::printObjectInfo(){
 }
 
 void ObjectManager::updateObjects(float deltaTime){
-    for(Object* &objectIterator : allObjects){
+    for(ObjectSpace::Object* &objectIterator : allObjects){
         objectIterator->updateObject(deltaTime);
     }
 }

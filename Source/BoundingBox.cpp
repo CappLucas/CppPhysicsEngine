@@ -1,7 +1,7 @@
 #include "BoundingBox.h"
 #include "Object.h"
 
-void BoundingBox::mergeBox(BoundingBox mergingBox){
+void BoundingBoxSpace::BoundingBox::mergeBox(BoundingBox mergingBox){
     //expands the box if any value is greater than the current.
     border.setLeftX(std::min(border.getLeftX(), mergingBox.border.getLeftX()));
     border.setBottomY(std::min(border.getBottomY(), mergingBox.border.getBottomY()));
@@ -9,13 +9,11 @@ void BoundingBox::mergeBox(BoundingBox mergingBox){
     border.setTopY(std::max(border.getTopY(), mergingBox.border.getTopY()));
 }
 
-BoundingBox BoundingBox::findBoundingBox(ObjectVector::iterator begginning, ObjectVector::iterator end){
-    BoundingBox returnBox;
+BoundingBoxSpace::BoundingBox BoundingBoxSpace::findBoundingBox(ObjectSpace::ObjectVector &objects){
+    BoundingBoxSpace::BoundingBox returnBox;
 
-    while(begginning != end){
-        Object* obj = *begginning;
-        returnBox.mergeBox(obj->getBoundingBox());
-        begginning += 1;
+    for(ObjectSpace::Object* object : objects){
+        returnBox.mergeBox(object->getBoundingBox());
     }
     return returnBox;
 }

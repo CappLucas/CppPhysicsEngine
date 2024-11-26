@@ -33,6 +33,8 @@ namespace TypeSpace{
 
             CoordStruct bottomLeft;
             CoordStruct topRight;
+
+            float diagnal();
         };
 
         float distance(CoordStruct &point1, CoordStruct &point2);
@@ -52,10 +54,11 @@ namespace TypeSpace{
             VectorStruct operator - (VectorStruct &v);
             VectorStruct operator * (VectorStruct &v);
             VectorStruct operator / (VectorStruct &v);
-
+            
+            void magnitude();
             void normalize();
         };
-
+        float magnitude(VectorStruct v);
         VectorStruct normalize(VectorStruct v);
     }
 
@@ -79,10 +82,5 @@ namespace TypeSpace{
     using Acceleration = PositionSpace::CoordStruct;
 
     using Vector = VectorSpace::VectorStruct;
-
-    class Object;
-    
-    using ObjectVector = std::vector<Object*>;
-    using CollisionObjectVector = std::vector<ObjectVector>;
 };
 #endif
