@@ -8,79 +8,91 @@
 #include <limits>
 #include <cmath>
 
-namespace TypeSpace{
+namespace{
 
-    namespace PositionSpace{
+    struct PointStruct{
+        PointStruct(){}
+        PointStruct(float newX, float newY) : x(newX), y(newY){}
 
-        typedef struct CoordStruct{
-            CoordStruct(){}
-            CoordStruct(float newX, float newY) : x(newX), y(newY){}
+        float x;
+        float y;
 
-            float x;
-            float y;
+        PointStruct operator + (PointStruct v);
+        PointStruct operator - (PointStruct v);
+        PointStruct operator * (PointStruct v);
+        PointStruct operator / (PointStruct v);
 
-            CoordStruct operator + (CoordStruct &c);
-            CoordStruct operator - (CoordStruct &c);
-            CoordStruct operator * (CoordStruct &c);
-            CoordStruct operator / (CoordStruct &c);
+        //move methods
+        void move(PointStruct displacement);
+        void moveTo(PointStruct position);
+        PointStruct showMove(PointStruct displacement);
 
-            float distanceTo(CoordStruct &c);
-        };
+        //getter methods
+        float distanceTo(PointStruct &point);
+    };
 
-        typedef struct CornerStruct{
-            CornerStruct(){}
-            CornerStruct(CoordStruct newBottomLeft, CoordStruct newTopRight) : bottomLeft(newBottomLeft), topRight(newTopRight){}
+    //represented as two points, the start and the end, like a ray in a videogame
+    struct Ray{
+        Ray(){}
+        Ray(PointStruct newStart, PointStruct newEnd) : start(newStart), end(newEnd){}
 
-            CoordStruct bottomLeft;
-            CoordStruct topRight;
+        PointStruct start;
+        PointStruct end;
 
-            float diagnal();
-        };
+        Ray operator + (Ray &v);
+        Ray operator - (Ray &v);
+        Ray operator * (Ray &v);
+        Ray operator / (Ray &v);
 
-        float distance(CoordStruct &point1, CoordStruct &point2);
-        float diagnal(CornerStruct &corner);
-    }
+        void move(PointStruct displacement);
+        void moveStart(PointStruct displacement);
+        void moveEnd(PointStruct displacement);
+
+        //gets magnitude
+        float magnitude();
+
+        //changes the magnitude by changing end point
+        void normalize();
+        void normalizeByStart();
+    };
+
+    struct CornerStruct{
+        CornerStruct(){}
+        CornerStruct(PointStruct newBottomLeft, PointStruct newTopRight) : bottomLeft(newBottomLeft), topRight(newTopRight){}
+
+        PointStruct bottomLeft;
+        PointStruct topRight;
+
+        float diagnal();
+        
+        void move(PointStruct displacement);
+        void moveTo(PointStruct position);
+
+        void shiftX(float xDisplacement);
+        void shiftY(float yDisplacement);
+
+        
+    };
+}
     
-    //holds everything for vectors even functions
-    namespace VectorSpace{
-        struct VectorStruct{
-            VectorStruct(){}
-            VectorStruct(float newX, float newY) : x(newX), y(newY){}
+namespace types{
+    using Cooridinate = PointStruct;
+    using Plane = CornerStruct;
 
-            float x;
-            float y;
+    using Velocity = PointStruct;
+    using Acceleration = PointStruct;
+}
 
-            VectorStruct operator + (VectorStruct &v);
-            VectorStruct operator - (VectorStruct &v);
-            VectorStruct operator * (VectorStruct &v);
-            VectorStruct operator / (VectorStruct &v);
-            
-            void magnitude();
-            void normalize();
-        };
-        float magnitude(VectorStruct v);
-        VectorStruct normalize(VectorStruct v);
-    }
+namespace constant_space{
+    extern const float INFINITY_FLOAT;
+}
 
-    namespace ConstantSpace{
-        extern const float INFINITY_FLOAT; 
-    }
+namespace enum_space{
+    enum class OBJECTTYPE{
+        RECTANGLE,
+        CIRCLE,
+        TRIANGLE
+    };
+}
 
-    namespace EnumSpace{
-        enum class OBJECTTYPE{
-            RECTANGLE,
-            CIRCLE,
-            TRIANGLE
-        };
-    }
-
-    using Cooridinate = PositionSpace::CoordStruct;
-    using Corner = PositionSpace::CornerStruct;
-    using Plane = PositionSpace::CornerStruct;
-
-    using Velocity = PositionSpace::CoordStruct;
-    using Acceleration = PositionSpace::CoordStruct;
-
-    using Vector = VectorSpace::VectorStruct;
-};
 #endif
