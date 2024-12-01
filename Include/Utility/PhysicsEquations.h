@@ -1,11 +1,5 @@
-#ifndef PHYSICSEQUATIONS_H
-#define PHYSICSEQUATIONS_H
-
 #pragma once
 
-#include "Types.h"
-
-#include <math.h>
 
 //holds the basic equations needed for physic calculations as functions.
 //The function name is the variable it is finding and the parameters are what it is finding it with.
@@ -22,7 +16,6 @@ float findVelocity(float deltaTime, float objectVelocity,float objectAcceleratio
 float findDisplacement(float deltaTime, float objectVelocity, float objectAcceleration);    
 
         // d = v*t
-float findDisplacement(float deltaTime, float objectVelocity);                               
+float findDisplacement(float deltaTime, float objectVelocity);
 
-
-#endif
+float lineFunction(float m, float x, float b);

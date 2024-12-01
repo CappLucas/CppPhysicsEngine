@@ -1,5 +1,6 @@
-#include "PhysicsEquations.h"
+#include "Utility/PhysicsEquations.h"
 
+#include <cmath>
 //factor in acceleration like the kinematic equation.
 float findDisplacement(float deltaTime, float objectVelocity, float objectAcceleration){
     //         velocity*time + (.5 * acceleration * square(time))
@@ -13,3 +14,7 @@ float findDisplacement(float deltaTime, float objectVelocity){
 float findVelocity(float deltaTime, float objectVelocity, float objectAcceleration){
     return objectVelocity + (objectAcceleration*deltaTime);
 }
+float lineFunction(float m, float x, float b){
+    return (m*x) + b;
+}
+

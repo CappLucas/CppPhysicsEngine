@@ -1,12 +1,7 @@
-#ifndef BOUNDINGBOX_H
-#define BOUNDINGBOX_H
-
 #pragma once
 
 #include "Types.h"
-#include "Rectangle.h"
 
-using namespace TypeSpace;
 
 #include <cmath>
 //box used to represent the bounding boxes of each object 
@@ -22,8 +17,3 @@ namespace BoundingBoxSpace{
 
     BoundingBox findBoundingBox(ObjectSpace::ObjectVector &object);
 }
-
-
-
-
-#endif

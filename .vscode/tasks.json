@@ -20,17 +20,20 @@
                 "${workspaceFolder}/Source/BoundingBox.cpp",
                 "${workspaceFolder}/Source/PhysicsEquations.cpp",
 
-                "-I", "${workspaceFolder}/Header/", 
+                "-I", "${workspaceFolder}/Include", 
+                
                 "-I", "C:/Libraries/SDL2/include",
                 "-L", "C:/Libraries/SDL2/lib",
                 
                 "-lSDL2main",
                 "-lSDL2",
                 
-                //"-mwindows", uncomment to stop the terminal opening
+                "-std=c++20",
+                "-mwindows", //uncomment to stop the terminal opening
 
                 "-o",
-                "${workspaceFolder}/Build/main.exe" 
+                "${workspaceFolder}/Build/main.exe"
+
             ],
             
             "options": {

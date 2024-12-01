@@ -1,6 +1,3 @@
-#ifndef COLLISIONDETECTIONMANAGER_H
-#define COLLISIONDETECTIONMANAGER_H
-
 #pragma once
 
 #include "Object.h"
@@ -33,5 +30,3 @@ private:
     CollisionObjectVector broadPhaseCollisions;
     CollisionObjectVector narrowPhaseCollisions;
 };
-
-#endif

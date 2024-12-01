@@ -1,6 +1,3 @@
-#ifndef OBJECT_H
-#define OBJECT_H
-
 #pragma once
 
 #include "Types.h"
@@ -8,7 +5,7 @@
 #include "PhysicsEquations.h"
 
 #include "Circle.h"
-#include "Rectangle.h"
+#include "Region.h"
 
 #include <string>
 #include <iostream>
@@ -17,7 +14,13 @@
 
 //holds object class and the types and functions involved with them
 
-namespace ObjectSpace{
+namespace Object_Space{
+    enum class OBJECTTYPE{
+        RECTANGLE,
+        CIRCLE,
+        TRIANGLE
+    };
+    
     //forward declaration
     class BoundingBox;
 
@@ -104,6 +107,3 @@ namespace ObjectSpace{
     using ObjectVector = std::vector<Object*>;
     using CollisionObjectVector = std::vector<ObjectVector>;
 }
-
-
-#endif

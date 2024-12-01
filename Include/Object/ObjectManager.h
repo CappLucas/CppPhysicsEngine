@@ -1,6 +1,3 @@
-#ifndef OBJECTMANAGER_H
-#define OBJECTMANAGER_H
-
 #pragma once
 
 #include "Object.h"
@@ -31,7 +28,7 @@ Each object has a class representing a shape it could be and things like velocit
  * objects by their names, as well as to access the complete list of objects.
  */
 
-using namespace TypeSpace;
+
 
 class ObjectManager{
 public:
@@ -76,5 +73,3 @@ private:
     /// @brief Stores all game objects.
     ObjectSpace::ObjectVector allObjects;
 };
-
-#endif

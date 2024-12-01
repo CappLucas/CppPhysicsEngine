@@ -44,7 +44,14 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "cinttypes": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "charconv": "cpp",
+        "cstdarg": "cpp",
+        "ctime": "cpp",
+        "format": "cpp",
+        "span": "cpp",
+        "text_encoding": "cpp",
+        "variant": "cpp"
     },
     "C_Cpp.clang_format_path": "C:\\DevTools\\ClangFormat\\CppClangFormat\\.clang-format",
     "clang-format.executable": "C:\\DevTools\\ClangFormat\\clang-format-6923b0a7.exe",
