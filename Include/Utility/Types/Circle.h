@@ -1,8 +1,6 @@
 #pragma once
 
 #include "Point.h"
-#include "NewType.h"
-#include "NewType.h"
 
 namespace Geometry_Space{
     class Circle{
@@ -18,15 +16,15 @@ namespace Geometry_Space{
             float getBottomY() const {return center.y - radius;}
             float getTopY() const {return center.y + radius;}
 
-            Point getLeftPoint() const {return newPoint(getLeftX(), center.y);}
-            Point getRightPoint() const {return newPoint(getRightX(), center.y);}
-            Point getBottomPoint() const {return newPoint(center.x, getBottomY());}
-            Point getTopPoint() const {return newPoint(center.x, getTopY());}
+            Point getLeftPoint() const {return Point(getLeftX(), center.y);}
+            Point getRightPoint() const {return Point(getRightX(), center.y);}
+            Point getBottomPoint() const {return Point(center.x, getBottomY());}
+            Point getTopPoint() const {return Point(center.x, getTopY());}
 
-            Point getBottomLeft() const {return newPoint(getLeftX(), getBottomY());}
-            Point getTopLeft() const {return newPoint(getLeftX(), getTopY());}
-            Point getTopRight() const {return newPoint(getRightX(), getTopY());}
-            Point getBottomRight() const {return newPoint(getRightX(), getBottomY());}
+            Point getBottomLeft() const {return Point(getLeftX(), getBottomY());}
+            Point getTopLeft() const {return Point(getLeftX(), getTopY());}
+            Point getTopRight() const {return Point(getRightX(), getTopY());}
+            Point getBottomRight() const {return Point(getRightX(), getBottomY());}
 
             float getDiameter() const {return radius*2;}
 

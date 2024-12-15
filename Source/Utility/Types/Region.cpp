@@ -1,5 +1,4 @@
 #include "Region.h"
-#include "NewType.h"
 #include <cmath>
 
 namespace Geometry_Space{
@@ -10,7 +9,7 @@ namespace Geometry_Space{
             topRight = newTopRight;
         }
         else{
-            topRight = newBottomLeft + newPoint(1.0f, 1.0f);
+            topRight = newBottomLeft + Point(1.0f, 1.0f);
         }
     }
     float Region::getDiagnalLength() const {
@@ -54,7 +53,7 @@ namespace Geometry_Space{
     }
     void Region::setPosition(Point position){
         //adjust top right based on the bottom left.
-        topRight = position + newPoint(getWidth(), getHeight());
+        topRight = position + Point(getWidth(), getHeight());
         bottomLeft = position;
     }
     void Region::shiftX(float xDisplacement){

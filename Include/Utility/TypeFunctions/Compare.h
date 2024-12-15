@@ -9,49 +9,52 @@
 #include "Circle.h"
 
 namespace Geometry_Space{
-    bool isEqual(float val1, float val2);
+    bool isEqual(const float val1, const float val2);
 
-    bool contains(Region container, Region check);
-    bool contains(Region container, CenterRegion check);
-    bool contains(Region container, Point check);
-    bool contains(Region container, LineSegment check);
-    bool contains(Region container, Circle check);
+    //the reason why this is special is that the end can be less than the start and the 
+    //function with detect that the check is within the line.
+    bool contains(const float rangeStart, const float rangeEnd, const float check);
 
-    bool contains(CenterRegion container, Region check);
-    bool contains(CenterRegion container, CenterRegion check);
-    bool contains(CenterRegion container, Point check);
-    bool contains(CenterRegion container, LineSegment check);
-    bool contains(CenterRegion container, Circle check);
+    bool contains(const Region container, const Region check);
+    bool contains(const Region container, const CenterRegion check);
+    bool contains(const Region container, const Point check);
+    bool contains(const Region container, const LineSegment check);
+    bool contains(const Region container, const Circle check);
 
-    bool contains(Circle container, Region check);
-    bool contains(Circle container, CenterRegion check);
-    bool contains(Circle container, Circle check);
-    bool contains(Circle container, Point check);
-    bool contains(Circle container, LineSegment check);
+    bool contains(const CenterRegion container, const Region check);
+    bool contains(const CenterRegion container, const CenterRegion check);
+    bool contains(const CenterRegion container, const Point check);
+    bool contains(const CenterRegion container, const LineSegment check);
+    bool contains(const CenterRegion container, const Circle check);
 
-    bool contains(Ray container, Point check);
-    bool contains(LineSegment container, Point check);
+    bool contains(const Circle container, const Region check);
+    bool contains(const Circle container, const CenterRegion check);
+    bool contains(const Circle container, const Circle check);
+    bool contains(const Circle container, const Point check);
+    bool contains(const Circle container, const LineSegment check);
+
+    bool contains(const Ray container, const Point check);
+    bool contains(const LineSegment container, const Point check);
 
     //TODO: make a doesnotcontain function
 
-    bool overlaps(Region check1, Region check2);
-    bool overlaps(Region check1, CenterRegion check2);
-    bool overlaps(Region check1, Circle check2);
-    bool overlaps(Region check1, Ray check2);
-    bool overlaps(Region check1, LineSegment check2);
+    bool overlaps(const Region check1, const Region check2);
+    bool overlaps(const Region check1, const CenterRegion check2);
+    bool overlaps(const Region check1, const Circle check2);
+    bool overlaps(const Region check1, const Ray check2);
+    bool overlaps(const Region check1, const LineSegment check2);
     
-    bool overlaps(CenterRegion check1, CenterRegion check2);
-    bool overlaps(CenterRegion check1, Circle check2);
-    bool overlaps(CenterRegion check1, Ray check2);
-    bool overlaps(CenterRegion check1, LineSegment check2);
+    bool overlaps(const CenterRegion check1, const CenterRegion check2);
+    bool overlaps(const CenterRegion check1, const Circle check2);
+    bool overlaps(const CenterRegion check1, const Ray check2);
+    bool overlaps(const CenterRegion check1, const LineSegment check2);
 
-    bool overlaps(Circle check1, Circle check2);
-    bool overlaps(Circle check1, Ray check2);
-    bool overlaps(Circle check1, LineSegment check2);   
+    bool overlaps(const Circle check1, const Circle check2);
+    bool overlaps(const Circle check1, const Ray check2);
+    bool overlaps(const Circle check1, const LineSegment check2);   
 
-    bool overlaps(Ray check1, Ray check2);
-    bool overlaps(Ray check1, LineSegment check2);
+    bool overlaps(const Ray check1, const Ray check2);
+    bool overlaps(const Ray check1, const LineSegment check2);
 
-    bool overlaps(LineSegment check1, LineSegment check2);
-
+    bool overlaps(const LineSegment check1, const LineSegment check2);
 }

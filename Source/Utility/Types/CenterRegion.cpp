@@ -1,8 +1,6 @@
 #include "CenterRegion.h"
 #include "Point.h"
 
-#include "NewType.h"
-
 #include <cmath>
 
 namespace Geometry_Space{
@@ -41,7 +39,7 @@ namespace Geometry_Space{
 
         if(newLeft < right){
             width = (right - newLeft)/2;
-            center = newPoint(right-width, getCenterY());
+            center = Point(right-width, getCenterY());
         }
     }
     void CenterRegion::setRightX(float newRight){
@@ -49,7 +47,7 @@ namespace Geometry_Space{
 
         if(newRight > left){
             width = (newRight - left)/2;
-            center = newPoint(left + width, getCenterY());
+            center = Point(left + width, getCenterY());
         }
     }
     void CenterRegion::setBottomY(float newBottom){
@@ -57,7 +55,7 @@ namespace Geometry_Space{
         
         if(newBottom < top){
             height = (top - newBottom)/2;
-            center = newPoint(getCenterX(), top - height);
+            center = Point(getCenterX(), top - height);
         }
     }
     void CenterRegion::setTopY(float newTop){
@@ -65,7 +63,7 @@ namespace Geometry_Space{
 
         if(newTop > bottom){
             height = (newTop - bottom)/2;
-            center = newPoint(getCenterX(), bottom + height);
+            center = Point(getCenterX(), bottom + height);
         }
     }
     void CenterRegion::setBottomLeft(Point newBottomLeft){
@@ -74,7 +72,7 @@ namespace Geometry_Space{
         if(newBottomLeft.x < anchor.x && newBottomLeft.y < anchor.y){
             width = (anchor.x - newBottomLeft.x)/2;
             height = (anchor.y - newBottomLeft.y)/2;
-            center = anchor - newPoint(width, height);
+            center = anchor - Point(width, height);
         }
     }
     void CenterRegion::setTopRight(Point newTopRight){
@@ -83,7 +81,7 @@ namespace Geometry_Space{
         if(newTopRight.x > anchor.x && newTopRight.y > anchor.y){
             width = (newTopRight.x - anchor.x)/2;
             height = (newTopRight.y - anchor.y)/2;
-            center = anchor + newPoint(width, height);
+            center = anchor + Point(width, height);
         }
     }
     void CenterRegion::setBottomRight(Point newBottomRight){
@@ -92,7 +90,7 @@ namespace Geometry_Space{
         if(newBottomRight.x > anchor.x && newBottomRight.y < anchor.y){
             width = (newBottomRight.x - anchor.x)/2;
             height = (anchor.y - newBottomRight.y)/2;
-            center = newPoint(anchor.x + width, anchor.y - height);
+            center = Point(anchor.x + width, anchor.y - height);
         }
     }
     void CenterRegion::setTopLeft(Point newTopLeft){
@@ -101,7 +99,7 @@ namespace Geometry_Space{
         if(newTopLeft.x < anchor.x && newTopLeft.y > anchor.y){
             width = (anchor.x - newTopLeft.x)/2;
             height = (newTopLeft.y - anchor.y)/2;
-            center = newPoint(anchor.x - width, anchor.y + height);
+            center = Point(anchor.x - width, anchor.y + height);
         }
     }
     //methods

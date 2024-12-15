@@ -1,5 +1,4 @@
 #include "LineSegment.h"
-#include "NewType.h"
 #include "Compare.h"
 
 #include <cmath>
@@ -12,25 +11,35 @@ namespace Geometry_Space{
             end = newEnd;
         }
         else{
-            end = newEnd + newPoint(1.0f, 1.0f);
+            end = newEnd + Point(1.0f, 1.0f);
         }
     }
     
     Point LineSegment::getSlope() const {
-        return newPoint(getStartX() - getEndX(), getStartY() - getEndY());
+        return Point(getStartX() - getEndX(), getStartY() - getEndY());
     }
 
     Point LineSegment::getInterceptY() const {
         Point slope = getSlope();
         if(isEqual(slope.x, 0)){
-            return newPoint(-1, -1);
+            return Point(-1, 0);
         }
         else{
-            return newPoint(0, getStartY() - ((getSlope().y / getSlope().x) * getStartX()));
+            return Point(0, getStartY() - ((slope.y / slope.x) * getStartX()));
         }
     }
-    float LineSegment::function(const float x) const {
-        
+    //if the slope is undifined, it returns a point of (x-1, 0) else, returns a point of the 
+    //given parameter x, and the coorisponding y value from the lines functions.
+    Point LineSegment::function(const float x) const {
+        Point intercept = getInterceptY();
+        Point slope = getSlope();
+
+        if(isEqual(slope.x, -1)){
+            return Point(x-1, 0);
+        }
+        else{
+            return Point(x, (slope.y/slope.x)*x + intercept.y);
+        }
     }
     void LineSegment::addVector(const Vector v){
         end.x += v.x;

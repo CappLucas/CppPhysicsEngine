@@ -21,16 +21,16 @@ namespace Geometry_Space{
             float getCenterY() const {return getBottomY() + (getWidth()/2);}
 
             Point getBottomLeft() const {return bottomLeft;}
-            Point getBottomRight() const {return newPoint(getRightX(), getBottomY());}
-            Point getTopLeft() const {return newPoint(getLeftX(), getTopY());}
+            Point getBottomRight() const {return Point(getRightX(), getBottomY());}
+            Point getTopLeft() const {return Point(getLeftX(), getTopY());}
             Point getTopRight() const {return topRight;}
 
-            Point getCenter() const {return newPoint(getLeftX() + (getWidth()/2), getBottomY() + (getHeight()/2));}
+            Point getCenter() const {return Point(getLeftX() + (getWidth()/2), getBottomY() + (getHeight()/2));}
 
-            Point getBottomCenter() const {return newPoint(getCenterX(), getBottomY());}
-            Point getTopCenter() const {return newPoint(getCenterX(), getTopY());}
-            Point getRightCenter() const {return newPoint(getRightX(), getCenterY());}
-            Point getLeftCenter() const {return newPoint(getLeftX(), getCenterY());}
+            Point getBottomCenter() const {return Point(getCenterX(), getBottomY());}
+            Point getTopCenter() const {return Point(getCenterX(), getTopY());}
+            Point getRightCenter() const {return Point(getRightX(), getCenterY());}
+            Point getLeftCenter() const {return Point(getLeftX(), getCenterY());}
 
             float getDiagnalLength() const;
 

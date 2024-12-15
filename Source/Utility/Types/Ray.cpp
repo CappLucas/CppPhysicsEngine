@@ -1,7 +1,6 @@
 #include "Ray.h"
 
-#include "NewType.h"
-
+#include "Compare.h"
 #include "PhysicsEquations.h"
 
 namespace Geometry_Space{
@@ -12,35 +11,46 @@ namespace Geometry_Space{
             direction = newDirection;
         }
         else{
-            direction = newDirection + newPoint(1.0f, 1.0f);
+            direction = newDirection + Point(1.0f, 1.0f);
         }
     }
-    float Ray::getSlope() const {
-        return (start.y - direction.y)/(start.x - direction.x);
+    Point Ray::getSlope() const {
+        return Point(getDirectionX()-getStartX(), getDirectionY()-getStartY());
     }
-    float Ray::getInterceptY() const {
-        return start.y - (getSlope()*start.x);
+    Point Ray::getInterceptY() const {
+        Point slope = getSlope();
+        if(isEqual(slope.x, 0)){
+            return Point(-1, 0);
+        }
+        else{
+            return Point(0, getStartY() - (slope.x*getStartX()));
+        }
     }
-    float Ray::function(float x) const {
-        return getSlope()*x + getInterceptY();
+    Point Ray::function(float x) const {
+        Point slope = getSlope();
+        if(isEqual(slope.x, -1)){
+            return Point(x-1, 0);
+        }
+        else{
+            return Point(0, (slope.y/slope.x)*x + getInterceptY().y);
+        }
     }
-    //TODO: MAKE SURE NO DEVIDING BY ZERO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //sets the start to (0, y-intercept) and direction accordingly
     void Ray::setEquation(float m, float b){
         //set start as y intercept and then set direction according to the slope and start
-        start = newPoint(0, b);
+        start = Point(0, b);
         //sets direction as the what ever point falls on the new line and is on x = 1.
-        direction = newPoint(1, lineFunction(m, 1, b));
+        direction = Point(1, lineFunction(m, 1, b));
     }
     void Ray::setSlope(float slope){
-        direction = newPoint(start.x+1, lineFunction(slope, 1, getInterceptY()));
+        direction = Point(start.x+1, lineFunction(slope, 1, getInterceptY().y));
     }
     void Ray::setInterceptY(float intercept){
         //set start to intercept and then set the direction accordingly
-        float slope = getSlope();
-        start = newPoint(0, intercept);
+        float slope = getSlope().y;
+        start = Point(0, intercept);
 
-        direction = newPoint(1, lineFunction(slope, 1, intercept));
+        direction = Point(1, lineFunction(slope, 1, intercept));
     }
     void Ray::setStart(Point newStart){
         if(newStart != direction){

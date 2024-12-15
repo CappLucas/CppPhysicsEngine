@@ -1,5 +1,4 @@
 #include "Point.h"
-#include "NewType.h"
 #include "ProgramVariables.h"
 
 #include <cmath>
@@ -8,16 +7,16 @@ using namespace Program_Variables_Space;
 
 namespace Geometry_Space{
     Point Point::operator + (const Point p) const {
-        return newPoint(x + p.x, y + p.y);
+        return Point(x + p.x, y + p.y);
     }
     Point Point::operator - (const Point p) const {
-        return newPoint(x - p.x, y - p.y);
+        return Point(x - p.x, y - p.y);
     }
     Point Point::operator * (const Point p) const {
-        return newPoint(x * p.x, y * p.y);
+        return Point(x * p.x, y * p.y);
     }
     Point Point::operator / (const Point p) const {
-        return newPoint(x / p.x, y / p.y);
+        return Point(x / p.x, y / p.y);
     }
     bool Point::operator == (const Point p) const {
         //if less than a certain distance (COMPARISON_PRECISION), they are equal
@@ -48,7 +47,7 @@ namespace Geometry_Space{
         y = position.y;
     }
     Point Point::calculateNewPosition(const Point displacement) const {
-        return newPoint(displacement + newPoint(x, y));
+        return Point(displacement + Point(x, y));
     }
     float Point::distanceTo(const Point point) const {
         return std::sqrt(std::pow(point.x - x, 2) + std::pow(point.y - y, 2));

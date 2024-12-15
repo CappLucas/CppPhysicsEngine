@@ -18,19 +18,19 @@ namespace Geometry_Space{
             float getRightX() const {return center.x + width;}
             float getTopY() const {return center.y + height;}
 
-            Point getBottomLeft() const {return newPoint(getLeftX(), getBottomY());}
-            Point getBottomRight() const {return newPoint(getRightX(), getBottomY());}
-            Point getTopLeft() const {return newPoint(getLeftX(), getTopY());}
-            Point getTopRight() const {return newPoint(getRightX(), getTopY());}
+            Point getBottomLeft() const {return Point(getLeftX(), getBottomY());}
+            Point getBottomRight() const {return Point(getRightX(), getBottomY());}
+            Point getTopLeft() const {return Point(getLeftX(), getTopY());}
+            Point getTopRight() const {return Point(getRightX(), getTopY());}
 
             float getCenterX() const {return center.x;}
             float getCenterY() const {return center.y;}
             Point getCenter() const {return center;}
 
-            Point getBottomCenter() const {return newPoint(getCenterX(), getBottomY());}
-            Point getTopCenter() const {return newPoint(getCenterX(), getTopY());}
-            Point getRightCenter() const {return newPoint(getRightX(), getCenterY());}
-            Point getLeftCenter() const {return newPoint(getLeftX(), getCenterY());}
+            Point getBottomCenter() const {return Point(getCenterX(), getBottomY());}
+            Point getTopCenter() const {return Point(getCenterX(), getTopY());}
+            Point getRightCenter() const {return Point(getRightX(), getCenterY());}
+            Point getLeftCenter() const {return Point(getLeftX(), getCenterY());}
 
             float getDiagnalLength() const;
 

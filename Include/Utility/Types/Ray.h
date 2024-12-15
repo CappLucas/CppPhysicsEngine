@@ -17,9 +17,9 @@ namespace Geometry_Space{
             float getDirectionX() const {return direction.x;}
             float getDirectionY() const {return direction.y;}
 
-            float getSlope() const;
-            float getInterceptY() const;
-            float function(float x) const;
+            Point getSlope() const;
+            Point getInterceptY() const;
+            Point function(float x) const;
 
             void setEquation(float m, float b);
             void setSlope(float slope);

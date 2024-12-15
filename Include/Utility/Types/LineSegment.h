@@ -18,10 +18,11 @@ namespace Geometry_Space{
             float getEndY() const {return end.y;}
 
             float getMagnitude() const;
-
+            
+            //return points instead of floats. this helps avoid undifined values from deviding by 0.
             Point getSlope() const;
             Point getInterceptY() const;
-            float function(const float x) const;
+            Point function(const float x) const;
 
             void addVector(const Vector v);
 
